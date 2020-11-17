@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/pi/Desktop/testing_cmake/build",
+  "command": "/usr/bin/c++   -I/home/pi/Desktop/testing_cmake/rs-hello-realsense   -std=c++11   -o CMakeFiles/rs-hello-realsense.dir/rs-hello-realsense.cpp.o -c /home/pi/Desktop/testing_cmake/rs-hello-realsense.cpp",
+  "file": "/home/pi/Desktop/testing_cmake/rs-hello-realsense.cpp"
+}
+]
