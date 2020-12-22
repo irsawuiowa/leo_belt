@@ -59,45 +59,45 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/Desktop/testing_cmake
+CMAKE_SOURCE_DIR = /home/pi/leo_belt
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/Desktop/testing_cmake/build
+CMAKE_BINARY_DIR = /home/pi/leo_belt/build
 
 #=============================================================================
-# Target rules for target CMakeFiles/rs-hello-realsense.dir
+# Target rules for target CMakeFiles/leo-belt.dir
 
 # All Build rule for target.
-CMakeFiles/rs-hello-realsense.dir/all:
-	$(MAKE) -f CMakeFiles/rs-hello-realsense.dir/build.make CMakeFiles/rs-hello-realsense.dir/depend
-	$(MAKE) -f CMakeFiles/rs-hello-realsense.dir/build.make CMakeFiles/rs-hello-realsense.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Desktop/testing_cmake/build/CMakeFiles --progress-num=1,2 "Built target rs-hello-realsense"
-.PHONY : CMakeFiles/rs-hello-realsense.dir/all
+CMakeFiles/leo-belt.dir/all:
+	$(MAKE) -f CMakeFiles/leo-belt.dir/build.make CMakeFiles/leo-belt.dir/depend
+	$(MAKE) -f CMakeFiles/leo-belt.dir/build.make CMakeFiles/leo-belt.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/leo_belt/build/CMakeFiles --progress-num=1,2,3,4,5 "Built target leo-belt"
+.PHONY : CMakeFiles/leo-belt.dir/all
 
 # Include target in all.
-all: CMakeFiles/rs-hello-realsense.dir/all
+all: CMakeFiles/leo-belt.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/rs-hello-realsense.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Desktop/testing_cmake/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/rs-hello-realsense.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Desktop/testing_cmake/build/CMakeFiles 0
-.PHONY : CMakeFiles/rs-hello-realsense.dir/rule
+CMakeFiles/leo-belt.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/leo_belt/build/CMakeFiles 5
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/leo-belt.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/leo_belt/build/CMakeFiles 0
+.PHONY : CMakeFiles/leo-belt.dir/rule
 
 # Convenience name for target.
-rs-hello-realsense: CMakeFiles/rs-hello-realsense.dir/rule
+leo-belt: CMakeFiles/leo-belt.dir/rule
 
-.PHONY : rs-hello-realsense
-
-# clean rule for target.
-CMakeFiles/rs-hello-realsense.dir/clean:
-	$(MAKE) -f CMakeFiles/rs-hello-realsense.dir/build.make CMakeFiles/rs-hello-realsense.dir/clean
-.PHONY : CMakeFiles/rs-hello-realsense.dir/clean
+.PHONY : leo-belt
 
 # clean rule for target.
-clean: CMakeFiles/rs-hello-realsense.dir/clean
+CMakeFiles/leo-belt.dir/clean:
+	$(MAKE) -f CMakeFiles/leo-belt.dir/build.make CMakeFiles/leo-belt.dir/clean
+.PHONY : CMakeFiles/leo-belt.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/leo-belt.dir/clean
 
 .PHONY : clean
 

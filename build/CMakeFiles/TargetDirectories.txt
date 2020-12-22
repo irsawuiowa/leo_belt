@@ -1,7 +1,7 @@
-/home/pi/Desktop/testing_cmake/build/CMakeFiles/install/strip.dir
-/home/pi/Desktop/testing_cmake/build/CMakeFiles/edit_cache.dir
-/home/pi/Desktop/testing_cmake/build/CMakeFiles/rebuild_cache.dir
-/home/pi/Desktop/testing_cmake/build/CMakeFiles/rs-hello-realsense.dir
-/home/pi/Desktop/testing_cmake/build/CMakeFiles/list_install_components.dir
-/home/pi/Desktop/testing_cmake/build/CMakeFiles/install.dir
-/home/pi/Desktop/testing_cmake/build/CMakeFiles/install/local.dir
+/home/pi/leo_belt/build/CMakeFiles/edit_cache.dir
+/home/pi/leo_belt/build/CMakeFiles/install/strip.dir
+/home/pi/leo_belt/build/CMakeFiles/leo-belt.dir
+/home/pi/leo_belt/build/CMakeFiles/install.dir
+/home/pi/leo_belt/build/CMakeFiles/rebuild_cache.dir
+/home/pi/leo_belt/build/CMakeFiles/list_install_components.dir
+/home/pi/leo_belt/build/CMakeFiles/install/local.dir
