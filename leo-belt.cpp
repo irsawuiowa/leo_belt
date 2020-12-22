@@ -2,7 +2,7 @@
 // Copyright(c) 2017 Intel Corporation. All Rights Reserved.
 
 #include <librealsense2/rs.hpp>
-#include "example.hpp"
+#include "common/example.hpp"
 #include <imgui.h>
 #include "imgui_impl_glfw.h"
 
@@ -23,7 +23,7 @@ void drawLines(rs2::video_frame& other_frame, float depth_scale, const rs2::dept
 int main(int argc, char * argv[]) try
 {
     // Create and initialize GUI related objects
-    window app(1280, 720, "RealSense Align (Advanced) Example"); // Simple window handling
+    window app(1280, 720, "LEO Belt"); // Simple window handling
     ImGui_ImplGlfw_Init(app, false);      // ImGui library intializition
     rs2::colorizer c;                     // Helper to colorize depth images
     texture renderer;                     // Helper for renderig images

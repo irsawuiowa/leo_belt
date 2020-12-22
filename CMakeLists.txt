@@ -34,21 +34,21 @@ if(NOT REALSENSE2_FOUND)
 endif()
 
 
-    add_executable(rs-align-advanced rs-align-advanced.cpp third-party/imgui/imgui.cpp third-party/imgui/imgui_draw.cpp third-party/imgui/imgui_impl_glfw.cpp)
-    set_property(TARGET rs-align-advanced PROPERTY CXX_STANDARD 11)
-    target_link_libraries(rs-align-advanced ${REALSENSE2_FOUND})
-    target_link_libraries(rs-align-advanced ${REALSENSE2GL_FOUND})
-    target_link_libraries(rs-align-advanced ${DEPENDENCIES})
-    target_link_libraries(rs-align-advanced glfw)
-    target_link_libraries(rs-align-advanced pthread)
-    target_link_libraries(rs-align-advanced glut)
-    target_link_libraries(rs-align-advanced GL)
-    target_link_libraries(rs-align-advanced GLU)
+    add_executable(leo-belt leo-belt.cpp third-party/imgui/imgui.cpp third-party/imgui/imgui_draw.cpp third-party/imgui/imgui_impl_glfw.cpp)
+    set_property(TARGET leo-belt PROPERTY CXX_STANDARD 11)
+    target_link_libraries(leo-belt ${REALSENSE2_FOUND})
+    target_link_libraries(leo-belt ${REALSENSE2GL_FOUND})
+    target_link_libraries(leo-belt ${DEPENDENCIES})
+    target_link_libraries(leo-belt glfw)
+    target_link_libraries(leo-belt pthread)
+    target_link_libraries(leo-belt glut)
+    target_link_libraries(leo-belt GL)
+    target_link_libraries(leo-belt GLU)
   
    
-    include_directories(rs-align-advanced common third-party/imgui)
-    set_target_properties (rs-align-advanced PROPERTIES FOLDER Examples)
-    #install(TARGETS rs-align-advanced RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}\bin)
+    include_directories(leo-belt common third-party/imgui)
+    set_target_properties (leo-belt PROPERTIES FOLDER Examples)
+    #install(TARGETS leo-belt RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}\bin)
 
 
 
@@ -59,7 +59,7 @@ endif()
 install(
     TARGETS
 
-    rs-align-advanced
+    leo-belt
 
     RUNTIME DESTINATION
     ${CMAKE_INSTALL_PREFIX}/bin

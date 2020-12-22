@@ -48,13 +48,24 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/rs-align-advanced/leo_belt
+CMAKE_SOURCE_DIR = /home/pi/leo_belt
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/rs-align-advanced/leo_belt/build
+CMAKE_BINARY_DIR = /home/pi/leo_belt/build
 
 #=============================================================================
 # Targets provided globally by CMake.
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # Special rule for the target install/strip
 install/strip: preinstall
@@ -68,16 +79,17 @@ install/strip/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
 
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
 
 # Special rule for the target rebuild_cache
 rebuild_cache:
@@ -100,18 +112,6 @@ list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
 
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -126,9 +126,9 @@ install/local/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/rs-align-advanced/leo_belt/build/CMakeFiles /home/pi/rs-align-advanced/leo_belt/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/leo_belt/build/CMakeFiles /home/pi/leo_belt/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/rs-align-advanced/leo_belt/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/leo_belt/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -157,44 +157,44 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named rs-align-advanced
+# Target rules for targets named leo-belt
 
 # Build rule for target.
-rs-align-advanced: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 rs-align-advanced
-.PHONY : rs-align-advanced
+leo-belt: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 leo-belt
+.PHONY : leo-belt
 
 # fast build rule for target.
-rs-align-advanced/fast:
-	$(MAKE) -f CMakeFiles/rs-align-advanced.dir/build.make CMakeFiles/rs-align-advanced.dir/build
-.PHONY : rs-align-advanced/fast
+leo-belt/fast:
+	$(MAKE) -f CMakeFiles/leo-belt.dir/build.make CMakeFiles/leo-belt.dir/build
+.PHONY : leo-belt/fast
 
-rs-align-advanced.o: rs-align-advanced.cpp.o
+leo-belt.o: leo-belt.cpp.o
 
-.PHONY : rs-align-advanced.o
+.PHONY : leo-belt.o
 
 # target to build an object file
-rs-align-advanced.cpp.o:
-	$(MAKE) -f CMakeFiles/rs-align-advanced.dir/build.make CMakeFiles/rs-align-advanced.dir/rs-align-advanced.cpp.o
-.PHONY : rs-align-advanced.cpp.o
+leo-belt.cpp.o:
+	$(MAKE) -f CMakeFiles/leo-belt.dir/build.make CMakeFiles/leo-belt.dir/leo-belt.cpp.o
+.PHONY : leo-belt.cpp.o
 
-rs-align-advanced.i: rs-align-advanced.cpp.i
+leo-belt.i: leo-belt.cpp.i
 
-.PHONY : rs-align-advanced.i
+.PHONY : leo-belt.i
 
 # target to preprocess a source file
-rs-align-advanced.cpp.i:
-	$(MAKE) -f CMakeFiles/rs-align-advanced.dir/build.make CMakeFiles/rs-align-advanced.dir/rs-align-advanced.cpp.i
-.PHONY : rs-align-advanced.cpp.i
+leo-belt.cpp.i:
+	$(MAKE) -f CMakeFiles/leo-belt.dir/build.make CMakeFiles/leo-belt.dir/leo-belt.cpp.i
+.PHONY : leo-belt.cpp.i
 
-rs-align-advanced.s: rs-align-advanced.cpp.s
+leo-belt.s: leo-belt.cpp.s
 
-.PHONY : rs-align-advanced.s
+.PHONY : leo-belt.s
 
 # target to generate assembly for a file
-rs-align-advanced.cpp.s:
-	$(MAKE) -f CMakeFiles/rs-align-advanced.dir/build.make CMakeFiles/rs-align-advanced.dir/rs-align-advanced.cpp.s
-.PHONY : rs-align-advanced.cpp.s
+leo-belt.cpp.s:
+	$(MAKE) -f CMakeFiles/leo-belt.dir/build.make CMakeFiles/leo-belt.dir/leo-belt.cpp.s
+.PHONY : leo-belt.cpp.s
 
 third-party/imgui/imgui.o: third-party/imgui/imgui.cpp.o
 
@@ -202,7 +202,7 @@ third-party/imgui/imgui.o: third-party/imgui/imgui.cpp.o
 
 # target to build an object file
 third-party/imgui/imgui.cpp.o:
-	$(MAKE) -f CMakeFiles/rs-align-advanced.dir/build.make CMakeFiles/rs-align-advanced.dir/third-party/imgui/imgui.cpp.o
+	$(MAKE) -f CMakeFiles/leo-belt.dir/build.make CMakeFiles/leo-belt.dir/third-party/imgui/imgui.cpp.o
 .PHONY : third-party/imgui/imgui.cpp.o
 
 third-party/imgui/imgui.i: third-party/imgui/imgui.cpp.i
@@ -211,7 +211,7 @@ third-party/imgui/imgui.i: third-party/imgui/imgui.cpp.i
 
 # target to preprocess a source file
 third-party/imgui/imgui.cpp.i:
-	$(MAKE) -f CMakeFiles/rs-align-advanced.dir/build.make CMakeFiles/rs-align-advanced.dir/third-party/imgui/imgui.cpp.i
+	$(MAKE) -f CMakeFiles/leo-belt.dir/build.make CMakeFiles/leo-belt.dir/third-party/imgui/imgui.cpp.i
 .PHONY : third-party/imgui/imgui.cpp.i
 
 third-party/imgui/imgui.s: third-party/imgui/imgui.cpp.s
@@ -220,7 +220,7 @@ third-party/imgui/imgui.s: third-party/imgui/imgui.cpp.s
 
 # target to generate assembly for a file
 third-party/imgui/imgui.cpp.s:
-	$(MAKE) -f CMakeFiles/rs-align-advanced.dir/build.make CMakeFiles/rs-align-advanced.dir/third-party/imgui/imgui.cpp.s
+	$(MAKE) -f CMakeFiles/leo-belt.dir/build.make CMakeFiles/leo-belt.dir/third-party/imgui/imgui.cpp.s
 .PHONY : third-party/imgui/imgui.cpp.s
 
 third-party/imgui/imgui_draw.o: third-party/imgui/imgui_draw.cpp.o
@@ -229,7 +229,7 @@ third-party/imgui/imgui_draw.o: third-party/imgui/imgui_draw.cpp.o
 
 # target to build an object file
 third-party/imgui/imgui_draw.cpp.o:
-	$(MAKE) -f CMakeFiles/rs-align-advanced.dir/build.make CMakeFiles/rs-align-advanced.dir/third-party/imgui/imgui_draw.cpp.o
+	$(MAKE) -f CMakeFiles/leo-belt.dir/build.make CMakeFiles/leo-belt.dir/third-party/imgui/imgui_draw.cpp.o
 .PHONY : third-party/imgui/imgui_draw.cpp.o
 
 third-party/imgui/imgui_draw.i: third-party/imgui/imgui_draw.cpp.i
@@ -238,7 +238,7 @@ third-party/imgui/imgui_draw.i: third-party/imgui/imgui_draw.cpp.i
 
 # target to preprocess a source file
 third-party/imgui/imgui_draw.cpp.i:
-	$(MAKE) -f CMakeFiles/rs-align-advanced.dir/build.make CMakeFiles/rs-align-advanced.dir/third-party/imgui/imgui_draw.cpp.i
+	$(MAKE) -f CMakeFiles/leo-belt.dir/build.make CMakeFiles/leo-belt.dir/third-party/imgui/imgui_draw.cpp.i
 .PHONY : third-party/imgui/imgui_draw.cpp.i
 
 third-party/imgui/imgui_draw.s: third-party/imgui/imgui_draw.cpp.s
@@ -247,7 +247,7 @@ third-party/imgui/imgui_draw.s: third-party/imgui/imgui_draw.cpp.s
 
 # target to generate assembly for a file
 third-party/imgui/imgui_draw.cpp.s:
-	$(MAKE) -f CMakeFiles/rs-align-advanced.dir/build.make CMakeFiles/rs-align-advanced.dir/third-party/imgui/imgui_draw.cpp.s
+	$(MAKE) -f CMakeFiles/leo-belt.dir/build.make CMakeFiles/leo-belt.dir/third-party/imgui/imgui_draw.cpp.s
 .PHONY : third-party/imgui/imgui_draw.cpp.s
 
 third-party/imgui/imgui_impl_glfw.o: third-party/imgui/imgui_impl_glfw.cpp.o
@@ -256,7 +256,7 @@ third-party/imgui/imgui_impl_glfw.o: third-party/imgui/imgui_impl_glfw.cpp.o
 
 # target to build an object file
 third-party/imgui/imgui_impl_glfw.cpp.o:
-	$(MAKE) -f CMakeFiles/rs-align-advanced.dir/build.make CMakeFiles/rs-align-advanced.dir/third-party/imgui/imgui_impl_glfw.cpp.o
+	$(MAKE) -f CMakeFiles/leo-belt.dir/build.make CMakeFiles/leo-belt.dir/third-party/imgui/imgui_impl_glfw.cpp.o
 .PHONY : third-party/imgui/imgui_impl_glfw.cpp.o
 
 third-party/imgui/imgui_impl_glfw.i: third-party/imgui/imgui_impl_glfw.cpp.i
@@ -265,7 +265,7 @@ third-party/imgui/imgui_impl_glfw.i: third-party/imgui/imgui_impl_glfw.cpp.i
 
 # target to preprocess a source file
 third-party/imgui/imgui_impl_glfw.cpp.i:
-	$(MAKE) -f CMakeFiles/rs-align-advanced.dir/build.make CMakeFiles/rs-align-advanced.dir/third-party/imgui/imgui_impl_glfw.cpp.i
+	$(MAKE) -f CMakeFiles/leo-belt.dir/build.make CMakeFiles/leo-belt.dir/third-party/imgui/imgui_impl_glfw.cpp.i
 .PHONY : third-party/imgui/imgui_impl_glfw.cpp.i
 
 third-party/imgui/imgui_impl_glfw.s: third-party/imgui/imgui_impl_glfw.cpp.s
@@ -274,7 +274,7 @@ third-party/imgui/imgui_impl_glfw.s: third-party/imgui/imgui_impl_glfw.cpp.s
 
 # target to generate assembly for a file
 third-party/imgui/imgui_impl_glfw.cpp.s:
-	$(MAKE) -f CMakeFiles/rs-align-advanced.dir/build.make CMakeFiles/rs-align-advanced.dir/third-party/imgui/imgui_impl_glfw.cpp.s
+	$(MAKE) -f CMakeFiles/leo-belt.dir/build.make CMakeFiles/leo-belt.dir/third-party/imgui/imgui_impl_glfw.cpp.s
 .PHONY : third-party/imgui/imgui_impl_glfw.cpp.s
 
 # Help Target
@@ -283,16 +283,16 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... install/strip"
 	@echo "... edit_cache"
-	@echo "... rs-align-advanced"
+	@echo "... install/strip"
+	@echo "... leo-belt"
+	@echo "... install"
 	@echo "... rebuild_cache"
 	@echo "... list_install_components"
-	@echo "... install"
 	@echo "... install/local"
-	@echo "... rs-align-advanced.o"
-	@echo "... rs-align-advanced.i"
-	@echo "... rs-align-advanced.s"
+	@echo "... leo-belt.o"
+	@echo "... leo-belt.i"
+	@echo "... leo-belt.s"
 	@echo "... third-party/imgui/imgui.o"
 	@echo "... third-party/imgui/imgui.i"
 	@echo "... third-party/imgui/imgui.s"

@@ -1,22 +1,22 @@
 [
 {
-  "directory": "/home/pi/rs-align-advanced/leo_belt/build",
-  "command": "/usr/bin/c++   -I/home/pi/rs-align-advanced/leo_belt/rs-align-advanced -I/home/pi/rs-align-advanced/leo_belt/common -I/home/pi/rs-align-advanced/leo_belt/third-party/imgui -isystem /usr/local/include   -std=c++11   -std=gnu++11 -o CMakeFiles/rs-align-advanced.dir/rs-align-advanced.cpp.o -c /home/pi/rs-align-advanced/leo_belt/rs-align-advanced.cpp",
-  "file": "/home/pi/rs-align-advanced/leo_belt/rs-align-advanced.cpp"
+  "directory": "/home/pi/leo_belt/build",
+  "command": "/usr/bin/c++   -I/home/pi/leo_belt/leo-belt -I/home/pi/leo_belt/common -I/home/pi/leo_belt/third-party/imgui -isystem /usr/local/include   -std=c++11   -std=gnu++11 -o CMakeFiles/leo-belt.dir/leo-belt.cpp.o -c /home/pi/leo_belt/leo-belt.cpp",
+  "file": "/home/pi/leo_belt/leo-belt.cpp"
 },
 {
-  "directory": "/home/pi/rs-align-advanced/leo_belt/build",
-  "command": "/usr/bin/c++   -I/home/pi/rs-align-advanced/leo_belt/rs-align-advanced -I/home/pi/rs-align-advanced/leo_belt/common -I/home/pi/rs-align-advanced/leo_belt/third-party/imgui -isystem /usr/local/include   -std=c++11   -std=gnu++11 -o CMakeFiles/rs-align-advanced.dir/third-party/imgui/imgui.cpp.o -c /home/pi/rs-align-advanced/leo_belt/third-party/imgui/imgui.cpp",
-  "file": "/home/pi/rs-align-advanced/leo_belt/third-party/imgui/imgui.cpp"
+  "directory": "/home/pi/leo_belt/build",
+  "command": "/usr/bin/c++   -I/home/pi/leo_belt/leo-belt -I/home/pi/leo_belt/common -I/home/pi/leo_belt/third-party/imgui -isystem /usr/local/include   -std=c++11   -std=gnu++11 -o CMakeFiles/leo-belt.dir/third-party/imgui/imgui.cpp.o -c /home/pi/leo_belt/third-party/imgui/imgui.cpp",
+  "file": "/home/pi/leo_belt/third-party/imgui/imgui.cpp"
 },
 {
-  "directory": "/home/pi/rs-align-advanced/leo_belt/build",
-  "command": "/usr/bin/c++   -I/home/pi/rs-align-advanced/leo_belt/rs-align-advanced -I/home/pi/rs-align-advanced/leo_belt/common -I/home/pi/rs-align-advanced/leo_belt/third-party/imgui -isystem /usr/local/include   -std=c++11   -std=gnu++11 -o CMakeFiles/rs-align-advanced.dir/third-party/imgui/imgui_draw.cpp.o -c /home/pi/rs-align-advanced/leo_belt/third-party/imgui/imgui_draw.cpp",
-  "file": "/home/pi/rs-align-advanced/leo_belt/third-party/imgui/imgui_draw.cpp"
+  "directory": "/home/pi/leo_belt/build",
+  "command": "/usr/bin/c++   -I/home/pi/leo_belt/leo-belt -I/home/pi/leo_belt/common -I/home/pi/leo_belt/third-party/imgui -isystem /usr/local/include   -std=c++11   -std=gnu++11 -o CMakeFiles/leo-belt.dir/third-party/imgui/imgui_draw.cpp.o -c /home/pi/leo_belt/third-party/imgui/imgui_draw.cpp",
+  "file": "/home/pi/leo_belt/third-party/imgui/imgui_draw.cpp"
 },
 {
-  "directory": "/home/pi/rs-align-advanced/leo_belt/build",
-  "command": "/usr/bin/c++   -I/home/pi/rs-align-advanced/leo_belt/rs-align-advanced -I/home/pi/rs-align-advanced/leo_belt/common -I/home/pi/rs-align-advanced/leo_belt/third-party/imgui -isystem /usr/local/include   -std=c++11   -std=gnu++11 -o CMakeFiles/rs-align-advanced.dir/third-party/imgui/imgui_impl_glfw.cpp.o -c /home/pi/rs-align-advanced/leo_belt/third-party/imgui/imgui_impl_glfw.cpp",
-  "file": "/home/pi/rs-align-advanced/leo_belt/third-party/imgui/imgui_impl_glfw.cpp"
+  "directory": "/home/pi/leo_belt/build",
+  "command": "/usr/bin/c++   -I/home/pi/leo_belt/leo-belt -I/home/pi/leo_belt/common -I/home/pi/leo_belt/third-party/imgui -isystem /usr/local/include   -std=c++11   -std=gnu++11 -o CMakeFiles/leo-belt.dir/third-party/imgui/imgui_impl_glfw.cpp.o -c /home/pi/leo_belt/third-party/imgui/imgui_impl_glfw.cpp",
+  "file": "/home/pi/leo_belt/third-party/imgui/imgui_impl_glfw.cpp"
 }
 ]
