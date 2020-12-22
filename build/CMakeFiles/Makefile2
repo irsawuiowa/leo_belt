@@ -59,45 +59,45 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/Desktop/testing_cmake
+CMAKE_SOURCE_DIR = /home/pi/rs-align-advanced/leo_belt
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/Desktop/testing_cmake/build
+CMAKE_BINARY_DIR = /home/pi/rs-align-advanced/leo_belt/build
 
 #=============================================================================
-# Target rules for target CMakeFiles/rs-hello-realsense.dir
+# Target rules for target CMakeFiles/rs-align-advanced.dir
 
 # All Build rule for target.
-CMakeFiles/rs-hello-realsense.dir/all:
-	$(MAKE) -f CMakeFiles/rs-hello-realsense.dir/build.make CMakeFiles/rs-hello-realsense.dir/depend
-	$(MAKE) -f CMakeFiles/rs-hello-realsense.dir/build.make CMakeFiles/rs-hello-realsense.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Desktop/testing_cmake/build/CMakeFiles --progress-num=1,2 "Built target rs-hello-realsense"
-.PHONY : CMakeFiles/rs-hello-realsense.dir/all
+CMakeFiles/rs-align-advanced.dir/all:
+	$(MAKE) -f CMakeFiles/rs-align-advanced.dir/build.make CMakeFiles/rs-align-advanced.dir/depend
+	$(MAKE) -f CMakeFiles/rs-align-advanced.dir/build.make CMakeFiles/rs-align-advanced.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/rs-align-advanced/leo_belt/build/CMakeFiles --progress-num=1,2,3,4,5 "Built target rs-align-advanced"
+.PHONY : CMakeFiles/rs-align-advanced.dir/all
 
 # Include target in all.
-all: CMakeFiles/rs-hello-realsense.dir/all
+all: CMakeFiles/rs-align-advanced.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/rs-hello-realsense.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Desktop/testing_cmake/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/rs-hello-realsense.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Desktop/testing_cmake/build/CMakeFiles 0
-.PHONY : CMakeFiles/rs-hello-realsense.dir/rule
+CMakeFiles/rs-align-advanced.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/rs-align-advanced/leo_belt/build/CMakeFiles 5
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/rs-align-advanced.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/rs-align-advanced/leo_belt/build/CMakeFiles 0
+.PHONY : CMakeFiles/rs-align-advanced.dir/rule
 
 # Convenience name for target.
-rs-hello-realsense: CMakeFiles/rs-hello-realsense.dir/rule
+rs-align-advanced: CMakeFiles/rs-align-advanced.dir/rule
 
-.PHONY : rs-hello-realsense
-
-# clean rule for target.
-CMakeFiles/rs-hello-realsense.dir/clean:
-	$(MAKE) -f CMakeFiles/rs-hello-realsense.dir/build.make CMakeFiles/rs-hello-realsense.dir/clean
-.PHONY : CMakeFiles/rs-hello-realsense.dir/clean
+.PHONY : rs-align-advanced
 
 # clean rule for target.
-clean: CMakeFiles/rs-hello-realsense.dir/clean
+CMakeFiles/rs-align-advanced.dir/clean:
+	$(MAKE) -f CMakeFiles/rs-align-advanced.dir/build.make CMakeFiles/rs-align-advanced.dir/clean
+.PHONY : CMakeFiles/rs-align-advanced.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/rs-align-advanced.dir/clean
 
 .PHONY : clean
 

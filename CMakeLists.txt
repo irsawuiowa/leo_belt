@@ -1,7 +1,9 @@
+# License: Apache 2.0. See LICENSE file in root directory.
+# Copyright(c) 2019 Intel Corporation. All Rights Reserved.
 #  minimum required cmake version: 3.1.0
 cmake_minimum_required(VERSION 3.1.0)
 
-project(hello-realsense)
+project(RealsenseExamplesAlignAdvanced)
 
 # Save the command line compile commands in the build output
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
@@ -17,46 +19,52 @@ elseif(COMPILER_SUPPORTS_CXX0X)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
 endif()
 
-# Simple non robust way to find the librealsense library
-if(WIN32)
-    if("${CMAKE_SIZEOF_VOID_P}" STREQUAL "8")
-        set(LIBRARY_DIR "C:\\Program Files (x86)\\Intel RealSense SDK 2.0\\lib\\x64")          # TODO: Update this variable to correct path - folder where realsense2.lib is found
-        set(DLL_DIR "C:\\Program Files (x86)\\Intel RealSense SDK 2.0\\bin\\x64")              # TODO: Update this variable to correct path - folder where realsense2.dll is found
-    else()
-        set(LIBRARY_DIR "C:\\Program Files (x86)\\Intel RealSense SDK 2.0\\lib\\x86")          # TODO: Update this variable to correct path - folder where realsense2.lib is found
-        set(DLL_DIR "C:\\Program Files (x86)\\Intel RealSense SDK 2.0\\bin\\x86")              # TODO: Update this variable to correct path - folder where realsense2.dll is found
-    endif()
-    set(PROJECT_BINARY_OUTPUT_PATH "${PROJECT_BINARY_DIR}/\$\(Configuration\)")                # TODO: Update this variable to correct path - folder to which your project will compile
-    set(ADDITIONAL_INCLUDE_DIRS "C:\\Program Files (x86)\\Intel RealSense SDK 2.0\\include")   # TODO: Update this variable to correct path - folder where librealsense2 folder is found
-endif()
 
 
 find_library(REALSENSE2_FOUND realsense2 HINTS ${LIBRARY_DIR} REQUIRED)
+find_package(glfw3)
+find_library(REALSENSE2GL_FOUND realsense2-gl HINTS ${LIBRARY_DIR} REQUIRED)
+find_package(glut)
+find_package(GL)
+find_package(GLU)
+
 if(NOT REALSENSE2_FOUND)
     SET(REALSENSE2_FOUND "realsense2")
     message(WARN "Failed to find_library(realsense2)")
 endif()
-# hello-realsense
-add_executable(rs-hello-realsense rs-hello-realsense.cpp)
-include_directories(rs-hello-realsense ${ADDITIONAL_INCLUDE_DIRS})
-target_link_libraries(rs-hello-realsense ${REALSENSE2_FOUND})
-set_target_properties (rs-hello-realsense PROPERTIES FOLDER Examples)
 
-# Post Build script to copy realsense2.dll
-if(WIN32)
-message(STATUS "Adding Post build script to copy realsense2.dll to project's binary folder")
-message(STATUS "Will try to copy from ${DLL_DIR} to ${PROJECT_BINARY_OUTPUT_PATH}")
-add_custom_command(TARGET rs-hello-realsense POST_BUILD        # Adds a post-build event to rs-getting-started
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different              # which executes "cmake - E copy_if_different..."
-        "${DLL_DIR}/realsense2.dll"                            # <--this is in-file
-        ${PROJECT_BINARY_OUTPUT_PATH})                 # <--this is out-file path
-endif()
+
+    add_executable(rs-align-advanced rs-align-advanced.cpp third-party/imgui/imgui.cpp third-party/imgui/imgui_draw.cpp third-party/imgui/imgui_impl_glfw.cpp)
+    set_property(TARGET rs-align-advanced PROPERTY CXX_STANDARD 11)
+    target_link_libraries(rs-align-advanced ${REALSENSE2_FOUND})
+    target_link_libraries(rs-align-advanced ${REALSENSE2GL_FOUND})
+    target_link_libraries(rs-align-advanced ${DEPENDENCIES})
+    target_link_libraries(rs-align-advanced glfw)
+    target_link_libraries(rs-align-advanced pthread)
+    target_link_libraries(rs-align-advanced glut)
+    target_link_libraries(rs-align-advanced GL)
+    target_link_libraries(rs-align-advanced GLU)
+  
+   
+    include_directories(rs-align-advanced common third-party/imgui)
+    set_target_properties (rs-align-advanced PROPERTIES FOLDER Examples)
+    #install(TARGETS rs-align-advanced RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}\bin)
+
+
+
+
+
+
 
 install(
     TARGETS
 
-    rs-hello-realsense
+    rs-align-advanced
 
     RUNTIME DESTINATION
     ${CMAKE_INSTALL_PREFIX}/bin
 )
+
+
+
+

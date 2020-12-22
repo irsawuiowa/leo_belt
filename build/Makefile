@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/Desktop/testing_cmake
+CMAKE_SOURCE_DIR = /home/pi/rs-align-advanced/leo_belt
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/Desktop/testing_cmake/build
+CMAKE_BINARY_DIR = /home/pi/rs-align-advanced/leo_belt/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -126,9 +126,9 @@ install/local/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Desktop/testing_cmake/build/CMakeFiles /home/pi/Desktop/testing_cmake/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/rs-align-advanced/leo_belt/build/CMakeFiles /home/pi/rs-align-advanced/leo_belt/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Desktop/testing_cmake/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/rs-align-advanced/leo_belt/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -157,44 +157,125 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named rs-hello-realsense
+# Target rules for targets named rs-align-advanced
 
 # Build rule for target.
-rs-hello-realsense: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 rs-hello-realsense
-.PHONY : rs-hello-realsense
+rs-align-advanced: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 rs-align-advanced
+.PHONY : rs-align-advanced
 
 # fast build rule for target.
-rs-hello-realsense/fast:
-	$(MAKE) -f CMakeFiles/rs-hello-realsense.dir/build.make CMakeFiles/rs-hello-realsense.dir/build
-.PHONY : rs-hello-realsense/fast
+rs-align-advanced/fast:
+	$(MAKE) -f CMakeFiles/rs-align-advanced.dir/build.make CMakeFiles/rs-align-advanced.dir/build
+.PHONY : rs-align-advanced/fast
 
-rs-hello-realsense.o: rs-hello-realsense.cpp.o
+rs-align-advanced.o: rs-align-advanced.cpp.o
 
-.PHONY : rs-hello-realsense.o
+.PHONY : rs-align-advanced.o
 
 # target to build an object file
-rs-hello-realsense.cpp.o:
-	$(MAKE) -f CMakeFiles/rs-hello-realsense.dir/build.make CMakeFiles/rs-hello-realsense.dir/rs-hello-realsense.cpp.o
-.PHONY : rs-hello-realsense.cpp.o
+rs-align-advanced.cpp.o:
+	$(MAKE) -f CMakeFiles/rs-align-advanced.dir/build.make CMakeFiles/rs-align-advanced.dir/rs-align-advanced.cpp.o
+.PHONY : rs-align-advanced.cpp.o
 
-rs-hello-realsense.i: rs-hello-realsense.cpp.i
+rs-align-advanced.i: rs-align-advanced.cpp.i
 
-.PHONY : rs-hello-realsense.i
+.PHONY : rs-align-advanced.i
 
 # target to preprocess a source file
-rs-hello-realsense.cpp.i:
-	$(MAKE) -f CMakeFiles/rs-hello-realsense.dir/build.make CMakeFiles/rs-hello-realsense.dir/rs-hello-realsense.cpp.i
-.PHONY : rs-hello-realsense.cpp.i
+rs-align-advanced.cpp.i:
+	$(MAKE) -f CMakeFiles/rs-align-advanced.dir/build.make CMakeFiles/rs-align-advanced.dir/rs-align-advanced.cpp.i
+.PHONY : rs-align-advanced.cpp.i
 
-rs-hello-realsense.s: rs-hello-realsense.cpp.s
+rs-align-advanced.s: rs-align-advanced.cpp.s
 
-.PHONY : rs-hello-realsense.s
+.PHONY : rs-align-advanced.s
 
 # target to generate assembly for a file
-rs-hello-realsense.cpp.s:
-	$(MAKE) -f CMakeFiles/rs-hello-realsense.dir/build.make CMakeFiles/rs-hello-realsense.dir/rs-hello-realsense.cpp.s
-.PHONY : rs-hello-realsense.cpp.s
+rs-align-advanced.cpp.s:
+	$(MAKE) -f CMakeFiles/rs-align-advanced.dir/build.make CMakeFiles/rs-align-advanced.dir/rs-align-advanced.cpp.s
+.PHONY : rs-align-advanced.cpp.s
+
+third-party/imgui/imgui.o: third-party/imgui/imgui.cpp.o
+
+.PHONY : third-party/imgui/imgui.o
+
+# target to build an object file
+third-party/imgui/imgui.cpp.o:
+	$(MAKE) -f CMakeFiles/rs-align-advanced.dir/build.make CMakeFiles/rs-align-advanced.dir/third-party/imgui/imgui.cpp.o
+.PHONY : third-party/imgui/imgui.cpp.o
+
+third-party/imgui/imgui.i: third-party/imgui/imgui.cpp.i
+
+.PHONY : third-party/imgui/imgui.i
+
+# target to preprocess a source file
+third-party/imgui/imgui.cpp.i:
+	$(MAKE) -f CMakeFiles/rs-align-advanced.dir/build.make CMakeFiles/rs-align-advanced.dir/third-party/imgui/imgui.cpp.i
+.PHONY : third-party/imgui/imgui.cpp.i
+
+third-party/imgui/imgui.s: third-party/imgui/imgui.cpp.s
+
+.PHONY : third-party/imgui/imgui.s
+
+# target to generate assembly for a file
+third-party/imgui/imgui.cpp.s:
+	$(MAKE) -f CMakeFiles/rs-align-advanced.dir/build.make CMakeFiles/rs-align-advanced.dir/third-party/imgui/imgui.cpp.s
+.PHONY : third-party/imgui/imgui.cpp.s
+
+third-party/imgui/imgui_draw.o: third-party/imgui/imgui_draw.cpp.o
+
+.PHONY : third-party/imgui/imgui_draw.o
+
+# target to build an object file
+third-party/imgui/imgui_draw.cpp.o:
+	$(MAKE) -f CMakeFiles/rs-align-advanced.dir/build.make CMakeFiles/rs-align-advanced.dir/third-party/imgui/imgui_draw.cpp.o
+.PHONY : third-party/imgui/imgui_draw.cpp.o
+
+third-party/imgui/imgui_draw.i: third-party/imgui/imgui_draw.cpp.i
+
+.PHONY : third-party/imgui/imgui_draw.i
+
+# target to preprocess a source file
+third-party/imgui/imgui_draw.cpp.i:
+	$(MAKE) -f CMakeFiles/rs-align-advanced.dir/build.make CMakeFiles/rs-align-advanced.dir/third-party/imgui/imgui_draw.cpp.i
+.PHONY : third-party/imgui/imgui_draw.cpp.i
+
+third-party/imgui/imgui_draw.s: third-party/imgui/imgui_draw.cpp.s
+
+.PHONY : third-party/imgui/imgui_draw.s
+
+# target to generate assembly for a file
+third-party/imgui/imgui_draw.cpp.s:
+	$(MAKE) -f CMakeFiles/rs-align-advanced.dir/build.make CMakeFiles/rs-align-advanced.dir/third-party/imgui/imgui_draw.cpp.s
+.PHONY : third-party/imgui/imgui_draw.cpp.s
+
+third-party/imgui/imgui_impl_glfw.o: third-party/imgui/imgui_impl_glfw.cpp.o
+
+.PHONY : third-party/imgui/imgui_impl_glfw.o
+
+# target to build an object file
+third-party/imgui/imgui_impl_glfw.cpp.o:
+	$(MAKE) -f CMakeFiles/rs-align-advanced.dir/build.make CMakeFiles/rs-align-advanced.dir/third-party/imgui/imgui_impl_glfw.cpp.o
+.PHONY : third-party/imgui/imgui_impl_glfw.cpp.o
+
+third-party/imgui/imgui_impl_glfw.i: third-party/imgui/imgui_impl_glfw.cpp.i
+
+.PHONY : third-party/imgui/imgui_impl_glfw.i
+
+# target to preprocess a source file
+third-party/imgui/imgui_impl_glfw.cpp.i:
+	$(MAKE) -f CMakeFiles/rs-align-advanced.dir/build.make CMakeFiles/rs-align-advanced.dir/third-party/imgui/imgui_impl_glfw.cpp.i
+.PHONY : third-party/imgui/imgui_impl_glfw.cpp.i
+
+third-party/imgui/imgui_impl_glfw.s: third-party/imgui/imgui_impl_glfw.cpp.s
+
+.PHONY : third-party/imgui/imgui_impl_glfw.s
+
+# target to generate assembly for a file
+third-party/imgui/imgui_impl_glfw.cpp.s:
+	$(MAKE) -f CMakeFiles/rs-align-advanced.dir/build.make CMakeFiles/rs-align-advanced.dir/third-party/imgui/imgui_impl_glfw.cpp.s
+.PHONY : third-party/imgui/imgui_impl_glfw.cpp.s
 
 # Help Target
 help:
@@ -204,14 +285,23 @@ help:
 	@echo "... depend"
 	@echo "... install/strip"
 	@echo "... edit_cache"
+	@echo "... rs-align-advanced"
 	@echo "... rebuild_cache"
-	@echo "... rs-hello-realsense"
 	@echo "... list_install_components"
 	@echo "... install"
 	@echo "... install/local"
-	@echo "... rs-hello-realsense.o"
-	@echo "... rs-hello-realsense.i"
-	@echo "... rs-hello-realsense.s"
+	@echo "... rs-align-advanced.o"
+	@echo "... rs-align-advanced.i"
+	@echo "... rs-align-advanced.s"
+	@echo "... third-party/imgui/imgui.o"
+	@echo "... third-party/imgui/imgui.i"
+	@echo "... third-party/imgui/imgui.s"
+	@echo "... third-party/imgui/imgui_draw.o"
+	@echo "... third-party/imgui/imgui_draw.i"
+	@echo "... third-party/imgui/imgui_draw.s"
+	@echo "... third-party/imgui/imgui_impl_glfw.o"
+	@echo "... third-party/imgui/imgui_impl_glfw.i"
+	@echo "... third-party/imgui/imgui_impl_glfw.s"
 .PHONY : help
 
 
