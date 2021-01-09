@@ -12,6 +12,17 @@
 #include <algorithm>
 #include <cstring>
 
+#include <iostream>
+#include <vector>
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+#include "rs232.h"
+
+#define BUF_SIZE 123
+char str_send[14][BUF_SIZE]; // send data buffer
+int cport_nr = 16;
+
 void render_slider(rect location, float& clipping_dist);
 void remove_background(rs2::video_frame& other, const rs2::depth_frame& depth_frame, float depth_scale, float clipping_dist);
 float get_depth_scale(rs2::device dev);
@@ -22,13 +33,38 @@ void drawLines(rs2::video_frame& other_frame, float depth_scale, const rs2::dept
 
 int main(int argc, char * argv[]) try
 {
+    int i=1;
+    int bdrate = 57600;
+    
+    char mode[] ={'8','N','1',0}; // 8 data bits, no parity, 1 stop bit
+    unsigned char str_recv[BUF_SIZE]; // recv data buffer
+    strcpy(str_send[0], "01");
+    strcpy(str_send[1], "A1");
+    strcpy(str_send[2], "B1");
+    strcpy(str_send[3], "C1");
+    strcpy(str_send[4], "D1");
+    strcpy(str_send[5], "E1");
+    strcpy(str_send[6], "F1");
+    strcpy(str_send[7], "02");
+    strcpy(str_send[8], "A2");
+    strcpy(str_send[9], "B2");
+    strcpy(str_send[10], "C2");
+    strcpy(str_send[11], "D2");
+    strcpy(str_send[12], "E2");
+    strcpy(str_send[13], "F2");
+    
+    if(RS232_OpenComport(cport_nr, bdrate, mode)) {
+        printf("Can not open comport\n");
+        return(0);
+    }
+    
+    usleep(2000000); // Waits 2000ms for stable condition
+    
     // Create and initialize GUI related objects
     window app(1280, 720, "LEO Belt"); // Simple window handling
     ImGui_ImplGlfw_Init(app, false);      // ImGui library intializition
     rs2::colorizer c;                     // Helper to colorize depth images
     texture renderer;                     // Helper for renderig images
-
-
 
     // Create a pipeline to easily configure and start the camera
     rs2::pipeline pipe;
@@ -118,6 +154,20 @@ int main(int argc, char * argv[]) try
         ImGui_ImplGlfw_NewFrame(1);
         //render_slider({ 5.f, 0, w, h }, depth_clipping_distance);
         ImGui::Render();
+        
+        /*
+        RS232_cputs(cport_nr, str_send[i]);
+        //printf("Sent to Arduino: '%s'\n", str_send[i]);
+        //usleep(1000);
+        int n = RS232_PollComport(cport_nr, str_recv, (int)BUF_SIZE);
+        if(n > 0) {
+            str_recv[n] = 0;
+            //printf("Received %i bytes: '%s'\n", n, (char *)str_recv);
+        }
+        i++;
+        i %= 7;
+        usleep(5000000);
+        */ 
 
         // Print pixel depth
         printPixelDepth(other_frame, aligned_depth_frame, depth_scale);
@@ -207,13 +257,15 @@ void drawLines(rs2::video_frame& other_frame, float depth_scale, const rs2::dept
     //for (y = floor(height / 3); y < (floor(height / 3) + 3); y++) {
 
     auto depth_pixel_index = y * width;
-    for (int x = 0; x < width; x++, ++depth_pixel_index) {
-        auto offset = depth_pixel_index * other_bpp;
+    for (int l =  0; l < height; l ++) {
+        for (int x = 0; x < width; x++, ++depth_pixel_index) {
+            auto offset = depth_pixel_index * other_bpp;
 
-        // Set pixel to "background" color (0x999999)
-        std::memset(&p_other_frame[offset], 0x99, other_bpp);
+            // Set pixel to "background" color (0x999999)
+            std::memset(&p_other_frame[offset], 0x99, other_bpp);
+        }
     }
-
+    /*
     y *= 2;
     depth_pixel_index = y * width;
     for (int x = 0; x < width; x++, ++depth_pixel_index) {
@@ -229,6 +281,7 @@ void drawLines(rs2::video_frame& other_frame, float depth_scale, const rs2::dept
 
         std::memset(&p_other_frame[offset], 990000, other_bpp);
     }
+    * */
 
     /*
     int x = floor(width / 3);
@@ -348,8 +401,12 @@ void printPixelDepth(rs2::video_frame& other_frame, const rs2::depth_frame& dept
     int height = other_frame.get_height();
     int other_bpp = other_frame.get_bytes_per_pixel();
 
-    float furthest = 0;
-    float closest = 10;
+    float furthest1 = 0;
+    float closest1 = 10;
+    float furthest2 = 0;
+    float closest2 = 10;
+    int two_d[2][2];
+    float closest[8] = {10,10,10,10,10,10,10,10};
 
 #pragma omp parallel for schedule(dynamic) //Using OpenMP to try to parallelise the loop
     for (int y = 0; y < height; y++)
@@ -359,12 +416,26 @@ void printPixelDepth(rs2::video_frame& other_frame, const rs2::depth_frame& dept
         {
             // Get the depth value of the current pixel
             auto pixels_distance = depth_scale * p_depth_frame[depth_pixel_index];
+            
+            
+            if (x < width / 2) { // left half of screen
+                if (pixels_distance < closest[0] && pixels_distance > .001){
+                        closest[0] = pixels_distance;
+                }
+            } else { // right half of screen
+                if (pixels_distance < closest[1] && pixels_distance > .001){
+                        closest[1] = pixels_distance;
+                }
+            }
+            
 
-            if (pixels_distance > furthest) { furthest = pixels_distance; }
-            if ((pixels_distance < closest) && (pixels_distance > .1)) { closest = pixels_distance; }
+            //if (pixels_distance > furthest) { furthest = pixels_distance; }
+            //if ((pixels_distance < closest) && (pixels_distance > .1)) { closest = pixels_distance; }
 
-
+            
             //std::cout << "Depth at index (height, width) = [" << y << "," << x << "] = " << pixels_distance << std::endl;
+            //std::cout << "Depth pixel index = " << depth_pixel_index << std::endl;
+            
             /*
 
             if ((x <= 640) && (y <= 240)) {
@@ -390,6 +461,56 @@ void printPixelDepth(rs2::video_frame& other_frame, const rs2::depth_frame& dept
             }
             */
         }
+        //std::cout << "Height: " << height << "m. Width: " << width << "m." << std::endl;
     }
-    std::cout << "Furthest: " << furthest << "m. Closest: " << closest << "m." << std::endl;
+    //Feather 1
+    std::cout << "Left closest: " << closest[0] << "m -> Intensity: ";
+    if(closest[0] < .33){
+        RS232_cputs(cport_nr, str_send[6]);
+        std::cout << "6/6" << std::endl;
+    } else if(closest[0] < .66){
+        RS232_cputs(cport_nr, str_send[5]);
+        std::cout << "5/6" << std::endl;
+    } else if(closest[0] < .99){
+        RS232_cputs(cport_nr, str_send[4]);
+        std::cout << "4/6" << std::endl;
+    } else if(closest[0] < 1.33){
+        RS232_cputs(cport_nr, str_send[3]);
+        std::cout << "3/6" << std::endl;
+    } else if(closest[0] < 1.66){
+        RS232_cputs(cport_nr, str_send[2]);
+        std::cout << "2/6" << std::endl;
+    } else if(closest[0] < 1.99){
+        RS232_cputs(cport_nr, str_send[1]);
+        std::cout << "1/6" << std::endl;
+    } else {
+        RS232_cputs(cport_nr, str_send[0]);
+        std::cout << "0/6" << std::endl;
+    }
+    
+    //Feather 2
+    std::cout << "Right closest: " << closest[1] << "m -> Intensity: ";
+    if(closest[1] < .33){
+        RS232_cputs(cport_nr, str_send[13]);
+        std::cout << "6/6" << std::endl;
+    } else if(closest[1] < .66){
+        RS232_cputs(cport_nr, str_send[12]);
+        std::cout << "5/6" << std::endl;
+    } else if(closest[1] < .99){
+        RS232_cputs(cport_nr, str_send[11]);
+        std::cout << "4/6" << std::endl;
+    } else if(closest[1] < 1.33){
+        RS232_cputs(cport_nr, str_send[10]);
+        std::cout << "3/6" << std::endl;
+    } else if(closest[1] < 1.66){
+        RS232_cputs(cport_nr, str_send[9]);
+        std::cout << "2/6" << std::endl;
+    } else if(closest[1] < 1.99){
+        RS232_cputs(cport_nr, str_send[8]);
+        std::cout << "1/6" << std::endl;
+    } else {
+        RS232_cputs(cport_nr, str_send[7]);
+        std::cout << "0/6" << std::endl;
+    }
+    //std::cout << "Furthest: " << furthest << "m. Closest: " << closest << "m." << std::endl;
 }

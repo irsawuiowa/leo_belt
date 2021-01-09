@@ -139,7 +139,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=RealsenseExamplesAlignAdvanced
+CMAKE_PROJECT_NAME:STATIC=leo-belt
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
@@ -236,17 +236,17 @@ REALSENSE2GL_FOUND:FILEPATH=/usr/local/lib/librealsense2-gl.so
 //Path to a library.
 REALSENSE2_FOUND:FILEPATH=/usr/local/lib/librealsense2.so
 
-//Value Computed by CMake
-RealsenseExamplesAlignAdvanced_BINARY_DIR:STATIC=/home/pi/leo_belt/build
-
-//Value Computed by CMake
-RealsenseExamplesAlignAdvanced_SOURCE_DIR:STATIC=/home/pi/leo_belt
-
 //The directory containing a CMake configuration file for glfw3.
 glfw3_DIR:PATH=/usr/local/lib/cmake/glfw3
 
 //The directory containing a CMake configuration file for glut.
 glut_DIR:PATH=glut_DIR-NOTFOUND
+
+//Value Computed by CMake
+leo-belt_BINARY_DIR:STATIC=/home/pi/leo_belt/build
+
+//Value Computed by CMake
+leo-belt_SOURCE_DIR:STATIC=/home/pi/leo_belt
 
 
 ########################
