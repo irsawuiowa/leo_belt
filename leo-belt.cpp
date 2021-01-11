@@ -20,7 +20,7 @@
 #include "rs232.h"
 
 #define BUF_SIZE 123
-char str_send[14][BUF_SIZE]; // send data buffer
+char str_send[56][BUF_SIZE]; // send data buffer
 int cport_nr = 16;
 
 void render_slider(rect location, float& clipping_dist);
@@ -52,6 +52,48 @@ int main(int argc, char * argv[]) try
     strcpy(str_send[11], "D2");
     strcpy(str_send[12], "E2");
     strcpy(str_send[13], "F2");
+    strcpy(str_send[14], "03");
+    strcpy(str_send[15], "A3");
+    strcpy(str_send[16], "B3");
+    strcpy(str_send[17], "C3");
+    strcpy(str_send[18], "D3");
+    strcpy(str_send[19], "E3");
+    strcpy(str_send[20], "F3");
+    strcpy(str_send[21], "04");
+    strcpy(str_send[22], "A4");
+    strcpy(str_send[23], "B4");
+    strcpy(str_send[24], "C4");
+    strcpy(str_send[25], "D4");
+    strcpy(str_send[26], "E4");
+    strcpy(str_send[27], "F4");
+    strcpy(str_send[28], "05");
+    strcpy(str_send[29], "A5");
+    strcpy(str_send[30], "B5");
+    strcpy(str_send[31], "C5");
+    strcpy(str_send[32], "D5");
+    strcpy(str_send[33], "E5");
+    strcpy(str_send[34], "F5");
+    strcpy(str_send[35], "06");
+    strcpy(str_send[36], "A6");
+    strcpy(str_send[37], "B6");
+    strcpy(str_send[38], "C6");
+    strcpy(str_send[39], "D6");
+    strcpy(str_send[40], "E6");
+    strcpy(str_send[41], "F6");
+    strcpy(str_send[42], "07");
+    strcpy(str_send[43], "A7");
+    strcpy(str_send[44], "B7");
+    strcpy(str_send[45], "C7");
+    strcpy(str_send[46], "D7");
+    strcpy(str_send[47], "E7");
+    strcpy(str_send[48], "F7");
+    strcpy(str_send[49], "08");
+    strcpy(str_send[50], "A8");
+    strcpy(str_send[51], "B8");
+    strcpy(str_send[52], "C8");
+    strcpy(str_send[53], "D8");
+    strcpy(str_send[54], "E8");
+    strcpy(str_send[55], "F8");
     
     if(RS232_OpenComport(cport_nr, bdrate, mode)) {
         printf("Can not open comport\n");
@@ -572,150 +614,150 @@ void printPixelDepth(rs2::video_frame& other_frame, const rs2::depth_frame& dept
     //Feather 3
     std::cout << "Quadrant 3 closest: " << closest[2] << "m -> Intensity: ";
     if(closest[2] < .33){
-        //RS232_cputs(cport_nr, str_send[13]);
+        //RS232_cputs(cport_nr, str_send[20]);
         std::cout << "6/6" << std::endl;
     } else if(closest[2] < .66){
-        //RS232_cputs(cport_nr, str_send[12]);
+        //RS232_cputs(cport_nr, str_send[19]);
         std::cout << "5/6" << std::endl;
     } else if(closest[2] < .99){
-        //RS232_cputs(cport_nr, str_send[11]);
+        //RS232_cputs(cport_nr, str_send[18]);
         std::cout << "4/6" << std::endl;
     } else if(closest[2] < 1.33){
-        //RS232_cputs(cport_nr, str_send[10]);
+        //RS232_cputs(cport_nr, str_send[17]);
         std::cout << "3/6" << std::endl;
     } else if(closest[2] < 1.66){
-       //RS232_cputs(cport_nr, str_send[9]);
+       //RS232_cputs(cport_nr, str_send[16]);
         std::cout << "2/6" << std::endl;
     } else if(closest[2] < 1.99){
-        //RS232_cputs(cport_nr, str_send[8]);
+        //RS232_cputs(cport_nr, str_send[15]);
         std::cout << "1/6" << std::endl;
     } else {
-        //RS232_cputs(cport_nr, str_send[7]);
+        //RS232_cputs(cport_nr, str_send[14]);
         std::cout << "0/6" << std::endl;
     }
     
     //Feather 4
     std::cout << "Quadrant 4 closest: " << closest[3] << "m -> Intensity: ";
     if(closest[3] < .33){
-        //RS232_cputs(cport_nr, str_send[13]);
+        //RS232_cputs(cport_nr, str_send[27]);
         std::cout << "6/6" << std::endl;
     } else if(closest[3] < .66){
-        //RS232_cputs(cport_nr, str_send[12]);
+        //RS232_cputs(cport_nr, str_send[26]);
         std::cout << "5/6" << std::endl;
     } else if(closest[3] < .99){
-        //RS232_cputs(cport_nr, str_send[11]);
+        //RS232_cputs(cport_nr, str_send[25]);
         std::cout << "4/6" << std::endl;
     } else if(closest[3] < 1.33){
-        //RS232_cputs(cport_nr, str_send[10]);
+        //RS232_cputs(cport_nr, str_send[24]);
         std::cout << "3/6" << std::endl;
     } else if(closest[3] < 1.66){
-       //RS232_cputs(cport_nr, str_send[9]);
+       //RS232_cputs(cport_nr, str_send[23]);
         std::cout << "2/6" << std::endl;
     } else if(closest[3] < 1.99){
-        //RS232_cputs(cport_nr, str_send[8]);
+        //RS232_cputs(cport_nr, str_send[22]);
         std::cout << "1/6" << std::endl;
     } else {
-        //RS232_cputs(cport_nr, str_send[7]);
+        //RS232_cputs(cport_nr, str_send[21]);
         std::cout << "0/6" << std::endl;
     }
     
     //Feather 5
     std::cout << "Quadrant 5 closest: " << closest[4] << "m -> Intensity: ";
     if(closest[4] < .33){
-        //RS232_cputs(cport_nr, str_send[13]);
+        //RS232_cputs(cport_nr, str_send[34]);
         std::cout << "6/6" << std::endl;
     } else if(closest[4] < .66){
-        //RS232_cputs(cport_nr, str_send[12]);
+        //RS232_cputs(cport_nr, str_send[33]);
         std::cout << "5/6" << std::endl;
     } else if(closest[4] < .99){
-        //RS232_cputs(cport_nr, str_send[11]);
+        //RS232_cputs(cport_nr, str_send[32]);
         std::cout << "4/6" << std::endl;
     } else if(closest[4] < 1.33){
-        //RS232_cputs(cport_nr, str_send[10]);
+        //RS232_cputs(cport_nr, str_send[31]);
         std::cout << "3/6" << std::endl;
     } else if(closest[4] < 1.66){
-       //RS232_cputs(cport_nr, str_send[9]);
+       //RS232_cputs(cport_nr, str_send[30]);
         std::cout << "2/6" << std::endl;
     } else if(closest[4] < 1.99){
-        //RS232_cputs(cport_nr, str_send[8]);
+        //RS232_cputs(cport_nr, str_send[29]);
         std::cout << "1/6" << std::endl;
     } else {
-        //RS232_cputs(cport_nr, str_send[7]);
+        //RS232_cputs(cport_nr, str_send[28]);
         std::cout << "0/6" << std::endl;
     }
     
     //Feather 6
     std::cout << "Quadrant 6 closest: " << closest[5] << "m -> Intensity: ";
     if(closest[5] < .33){
-        //RS232_cputs(cport_nr, str_send[13]);
+        //RS232_cputs(cport_nr, str_send[41]);
         std::cout << "6/6" << std::endl;
     } else if(closest[5] < .66){
-        //RS232_cputs(cport_nr, str_send[12]);
+        //RS232_cputs(cport_nr, str_send[40]);
         std::cout << "5/6" << std::endl;
     } else if(closest[5] < .99){
-        //RS232_cputs(cport_nr, str_send[11]);
+        //RS232_cputs(cport_nr, str_send[39]);
         std::cout << "4/6" << std::endl;
     } else if(closest[5] < 1.33){
-        //RS232_cputs(cport_nr, str_send[10]);
+        //RS232_cputs(cport_nr, str_send[38]);
         std::cout << "3/6" << std::endl;
     } else if(closest[5] < 1.66){
-       //RS232_cputs(cport_nr, str_send[9]);
+       //RS232_cputs(cport_nr, str_send[37]);
         std::cout << "2/6" << std::endl;
     } else if(closest[5] < 1.99){
-        //RS232_cputs(cport_nr, str_send[8]);
+        //RS232_cputs(cport_nr, str_send[36]);
         std::cout << "1/6" << std::endl;
     } else {
-        //RS232_cputs(cport_nr, str_send[7]);
+        //RS232_cputs(cport_nr, str_send[35]);
         std::cout << "0/6" << std::endl;
     }
     
     //Feather 7
     std::cout << "Quadrant 7 closest: " << closest[6] << "m -> Intensity: ";
     if(closest[6] < .33){
-        //RS232_cputs(cport_nr, str_send[13]);
+        //RS232_cputs(cport_nr, str_send[48]);
         std::cout << "6/6" << std::endl;
     } else if(closest[6] < .66){
-        //RS232_cputs(cport_nr, str_send[12]);
+        //RS232_cputs(cport_nr, str_send[47]);
         std::cout << "5/6" << std::endl;
     } else if(closest[6] < .99){
-        //RS232_cputs(cport_nr, str_send[11]);
+        //RS232_cputs(cport_nr, str_send[46]);
         std::cout << "4/6" << std::endl;
     } else if(closest[6] < 1.33){
-        //RS232_cputs(cport_nr, str_send[10]);
+        //RS232_cputs(cport_nr, str_send[45]);
         std::cout << "3/6" << std::endl;
     } else if(closest[6] < 1.66){
-       //RS232_cputs(cport_nr, str_send[9]);
+       //RS232_cputs(cport_nr, str_send[44]);
         std::cout << "2/6" << std::endl;
     } else if(closest[6] < 1.99){
-        //RS232_cputs(cport_nr, str_send[8]);
+        //RS232_cputs(cport_nr, str_send[43]);
         std::cout << "1/6" << std::endl;
     } else {
-        //RS232_cputs(cport_nr, str_send[7]);
+        //RS232_cputs(cport_nr, str_send[42]);
         std::cout << "0/6" << std::endl;
     }
     
     //Feather 8
     std::cout << "Quadrant 8 closest: " << closest[7] << "m -> Intensity: ";
     if(closest[7] < .33){
-        //RS232_cputs(cport_nr, str_send[13]);
+        //RS232_cputs(cport_nr, str_send[55]);
         std::cout << "6/6" << std::endl;
     } else if(closest[7] < .66){
-        //RS232_cputs(cport_nr, str_send[12]);
+        //RS232_cputs(cport_nr, str_send[54]);
         std::cout << "5/6" << std::endl;
     } else if(closest[7] < .99){
-        //RS232_cputs(cport_nr, str_send[11]);
+        //RS232_cputs(cport_nr, str_send[53]);
         std::cout << "4/6" << std::endl;
     } else if(closest[7] < 1.33){
-        //RS232_cputs(cport_nr, str_send[10]);
+        //RS232_cputs(cport_nr, str_send[52]);
         std::cout << "3/6" << std::endl;
     } else if(closest[7] < 1.66){
-       //RS232_cputs(cport_nr, str_send[9]);
+       //RS232_cputs(cport_nr, str_send[51]);
         std::cout << "2/6" << std::endl;
     } else if(closest[7] < 1.99){
-        //RS232_cputs(cport_nr, str_send[8]);
+        //RS232_cputs(cport_nr, str_send[50]);
         std::cout << "1/6" << std::endl;
     } else {
-        //RS232_cputs(cport_nr, str_send[7]);
+        //RS232_cputs(cport_nr, str_send[49]);
         std::cout << "0/6" << std::endl;
     }
     
