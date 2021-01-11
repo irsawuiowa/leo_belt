@@ -401,10 +401,6 @@ void printPixelDepth(rs2::video_frame& other_frame, const rs2::depth_frame& dept
     int height = other_frame.get_height();
     int other_bpp = other_frame.get_bytes_per_pixel();
 
-    float closest1 = 10;
-    float closest2 = 10;
-    float closest3 = 10;
-    float closest4 = 10;
     int two_d[2][2];
     float closest[8] = {10,10,10,10,10,10,10,10};
 
@@ -430,6 +426,7 @@ void printPixelDepth(rs2::video_frame& other_frame, const rs2::depth_frame& dept
             }
             */
             
+            /* Working code for 4 quadrants
             // Code for 4 qudrants
             if (x < width / 2 && y < height/ 2) { // Top-left quadrant
                 if (pixels_distance < closest[0] && pixels_distance > .001){
@@ -448,6 +445,43 @@ void printPixelDepth(rs2::video_frame& other_frame, const rs2::depth_frame& dept
                     closest[3] = pixels_distance;
                 }
             }
+            */
+            
+            // Attempting 8 feathers
+            if ((x < width / 3) && (y < height / 3)) { // Top-left quadrant
+                if (pixels_distance < closest[0] && pixels_distance > .001){
+                    closest[0] = pixels_distance;
+                }
+            } else if ((x > width / 3) && (x < 2*(width / 3)) && (y < height / 3)) { // Top-middle quadrant
+                if (pixels_distance < closest[1] && pixels_distance > .001){
+                    closest[1] = pixels_distance;
+                }
+            } else if ((x > 2*(width / 3)) && (y < height / 3)) { // Top-right quadrant
+                if (pixels_distance < closest[2] && pixels_distance > .001){
+                    closest[2] = pixels_distance;
+                }
+            } else if ((x < width / 3) && (y > height / 3) && (y < 2*(height / 3))) { // Middle-left quadrant
+                if (pixels_distance < closest[3] && pixels_distance > .001){
+                    closest[3] = pixels_distance;
+                }
+            } else if ((x > width / 3) && (x < 2*(width / 3)) && (y > height / 3) && (y < 2*(height / 3))) { // Middle-middle quadrant
+                if (pixels_distance < closest[4] && pixels_distance > .001){
+                    closest[4] = pixels_distance;
+                }
+            } else if ((x > 2*(width / 3)) && (y > (height / 3)) && (y < (2*(height / 3)))) { // Middle-right quadrant
+                if (pixels_distance < closest[5] && pixels_distance > .001){
+                    closest[5] = pixels_distance;
+                }
+            } else if ((x < width / 2) && (y > 2*(height / 3))) { // Bottom-left quadrant
+                if (pixels_distance < closest[6] && pixels_distance > .001){
+                    closest[6] = pixels_distance;
+                }
+            } else if ((x > width / 2) && (y > 2*(height / 3))) { // Bottom-right quadrant
+                if (pixels_distance < closest[7] && pixels_distance > .001){
+                    closest[7] = pixels_distance;
+                }
+            }
+            
             
 
             //if (pixels_distance > furthest) { furthest = pixels_distance; }
@@ -536,7 +570,7 @@ void printPixelDepth(rs2::video_frame& other_frame, const rs2::depth_frame& dept
     }
     
     //Feather 3
-    std::cout << "Quadrant 3 closest: " << closest[1] << "m -> Intensity: ";
+    std::cout << "Quadrant 3 closest: " << closest[2] << "m -> Intensity: ";
     if(closest[2] < .33){
         //RS232_cputs(cport_nr, str_send[13]);
         std::cout << "6/6" << std::endl;
@@ -561,7 +595,7 @@ void printPixelDepth(rs2::video_frame& other_frame, const rs2::depth_frame& dept
     }
     
     //Feather 4
-    std::cout << "Quadrant 4 closest: " << closest[1] << "m -> Intensity: ";
+    std::cout << "Quadrant 4 closest: " << closest[3] << "m -> Intensity: ";
     if(closest[3] < .33){
         //RS232_cputs(cport_nr, str_send[13]);
         std::cout << "6/6" << std::endl;
@@ -578,6 +612,106 @@ void printPixelDepth(rs2::video_frame& other_frame, const rs2::depth_frame& dept
        //RS232_cputs(cport_nr, str_send[9]);
         std::cout << "2/6" << std::endl;
     } else if(closest[3] < 1.99){
+        //RS232_cputs(cport_nr, str_send[8]);
+        std::cout << "1/6" << std::endl;
+    } else {
+        //RS232_cputs(cport_nr, str_send[7]);
+        std::cout << "0/6" << std::endl;
+    }
+    
+    //Feather 5
+    std::cout << "Quadrant 5 closest: " << closest[4] << "m -> Intensity: ";
+    if(closest[4] < .33){
+        //RS232_cputs(cport_nr, str_send[13]);
+        std::cout << "6/6" << std::endl;
+    } else if(closest[4] < .66){
+        //RS232_cputs(cport_nr, str_send[12]);
+        std::cout << "5/6" << std::endl;
+    } else if(closest[4] < .99){
+        //RS232_cputs(cport_nr, str_send[11]);
+        std::cout << "4/6" << std::endl;
+    } else if(closest[4] < 1.33){
+        //RS232_cputs(cport_nr, str_send[10]);
+        std::cout << "3/6" << std::endl;
+    } else if(closest[4] < 1.66){
+       //RS232_cputs(cport_nr, str_send[9]);
+        std::cout << "2/6" << std::endl;
+    } else if(closest[4] < 1.99){
+        //RS232_cputs(cport_nr, str_send[8]);
+        std::cout << "1/6" << std::endl;
+    } else {
+        //RS232_cputs(cport_nr, str_send[7]);
+        std::cout << "0/6" << std::endl;
+    }
+    
+    //Feather 6
+    std::cout << "Quadrant 6 closest: " << closest[5] << "m -> Intensity: ";
+    if(closest[5] < .33){
+        //RS232_cputs(cport_nr, str_send[13]);
+        std::cout << "6/6" << std::endl;
+    } else if(closest[5] < .66){
+        //RS232_cputs(cport_nr, str_send[12]);
+        std::cout << "5/6" << std::endl;
+    } else if(closest[5] < .99){
+        //RS232_cputs(cport_nr, str_send[11]);
+        std::cout << "4/6" << std::endl;
+    } else if(closest[5] < 1.33){
+        //RS232_cputs(cport_nr, str_send[10]);
+        std::cout << "3/6" << std::endl;
+    } else if(closest[5] < 1.66){
+       //RS232_cputs(cport_nr, str_send[9]);
+        std::cout << "2/6" << std::endl;
+    } else if(closest[5] < 1.99){
+        //RS232_cputs(cport_nr, str_send[8]);
+        std::cout << "1/6" << std::endl;
+    } else {
+        //RS232_cputs(cport_nr, str_send[7]);
+        std::cout << "0/6" << std::endl;
+    }
+    
+    //Feather 7
+    std::cout << "Quadrant 7 closest: " << closest[6] << "m -> Intensity: ";
+    if(closest[6] < .33){
+        //RS232_cputs(cport_nr, str_send[13]);
+        std::cout << "6/6" << std::endl;
+    } else if(closest[6] < .66){
+        //RS232_cputs(cport_nr, str_send[12]);
+        std::cout << "5/6" << std::endl;
+    } else if(closest[6] < .99){
+        //RS232_cputs(cport_nr, str_send[11]);
+        std::cout << "4/6" << std::endl;
+    } else if(closest[6] < 1.33){
+        //RS232_cputs(cport_nr, str_send[10]);
+        std::cout << "3/6" << std::endl;
+    } else if(closest[6] < 1.66){
+       //RS232_cputs(cport_nr, str_send[9]);
+        std::cout << "2/6" << std::endl;
+    } else if(closest[6] < 1.99){
+        //RS232_cputs(cport_nr, str_send[8]);
+        std::cout << "1/6" << std::endl;
+    } else {
+        //RS232_cputs(cport_nr, str_send[7]);
+        std::cout << "0/6" << std::endl;
+    }
+    
+    //Feather 8
+    std::cout << "Quadrant 8 closest: " << closest[7] << "m -> Intensity: ";
+    if(closest[7] < .33){
+        //RS232_cputs(cport_nr, str_send[13]);
+        std::cout << "6/6" << std::endl;
+    } else if(closest[7] < .66){
+        //RS232_cputs(cport_nr, str_send[12]);
+        std::cout << "5/6" << std::endl;
+    } else if(closest[7] < .99){
+        //RS232_cputs(cport_nr, str_send[11]);
+        std::cout << "4/6" << std::endl;
+    } else if(closest[7] < 1.33){
+        //RS232_cputs(cport_nr, str_send[10]);
+        std::cout << "3/6" << std::endl;
+    } else if(closest[7] < 1.66){
+       //RS232_cputs(cport_nr, str_send[9]);
+        std::cout << "2/6" << std::endl;
+    } else if(closest[7] < 1.99){
         //RS232_cputs(cport_nr, str_send[8]);
         std::cout << "1/6" << std::endl;
     } else {
