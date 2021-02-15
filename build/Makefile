@@ -196,6 +196,33 @@ leo-belt.cpp.s:
 	$(MAKE) -f CMakeFiles/leo-belt.dir/build.make CMakeFiles/leo-belt.dir/leo-belt.cpp.s
 .PHONY : leo-belt.cpp.s
 
+rs232.o: rs232.c.o
+
+.PHONY : rs232.o
+
+# target to build an object file
+rs232.c.o:
+	$(MAKE) -f CMakeFiles/leo-belt.dir/build.make CMakeFiles/leo-belt.dir/rs232.c.o
+.PHONY : rs232.c.o
+
+rs232.i: rs232.c.i
+
+.PHONY : rs232.i
+
+# target to preprocess a source file
+rs232.c.i:
+	$(MAKE) -f CMakeFiles/leo-belt.dir/build.make CMakeFiles/leo-belt.dir/rs232.c.i
+.PHONY : rs232.c.i
+
+rs232.s: rs232.c.s
+
+.PHONY : rs232.s
+
+# target to generate assembly for a file
+rs232.c.s:
+	$(MAKE) -f CMakeFiles/leo-belt.dir/build.make CMakeFiles/leo-belt.dir/rs232.c.s
+.PHONY : rs232.c.s
+
 third-party/imgui/imgui.o: third-party/imgui/imgui.cpp.o
 
 .PHONY : third-party/imgui/imgui.o
@@ -293,6 +320,9 @@ help:
 	@echo "... leo-belt.o"
 	@echo "... leo-belt.i"
 	@echo "... leo-belt.s"
+	@echo "... rs232.o"
+	@echo "... rs232.i"
+	@echo "... rs232.s"
 	@echo "... third-party/imgui/imgui.o"
 	@echo "... third-party/imgui/imgui.i"
 	@echo "... third-party/imgui/imgui.s"

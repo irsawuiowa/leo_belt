@@ -3,7 +3,7 @@
 #  minimum required cmake version: 3.1.0
 cmake_minimum_required(VERSION 3.1.0)
 
-project(RealsenseExamplesAlignAdvanced)
+project(leo-belt)
 
 # Save the command line compile commands in the build output
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
@@ -34,7 +34,7 @@ if(NOT REALSENSE2_FOUND)
 endif()
 
 
-    add_executable(leo-belt leo-belt.cpp third-party/imgui/imgui.cpp third-party/imgui/imgui_draw.cpp third-party/imgui/imgui_impl_glfw.cpp)
+    add_executable(leo-belt leo-belt.cpp third-party/imgui/imgui.cpp third-party/imgui/imgui_draw.cpp third-party/imgui/imgui_impl_glfw.cpp rs232.c)
     set_property(TARGET leo-belt PROPERTY CXX_STANDARD 11)
     target_link_libraries(leo-belt ${REALSENSE2_FOUND})
     target_link_libraries(leo-belt ${REALSENSE2GL_FOUND})
