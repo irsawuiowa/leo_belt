@@ -22,12 +22,19 @@
 #define BUF_SIZE 123
 char str_send[56][BUF_SIZE]; // send data buffer
 int cport_nr = 16;
+int buzz[8] = {0,0,0,0,0,0,0,0};
+int test[8]={0,0,0,0,0,0,0,0};
+float dist=2.0; // default detection distance set to 2.0 meters
 
 float get_depth_scale(rs2::device dev);
 rs2_stream find_stream_to_align(const std::vector<rs2::stream_profile>& streams);
 bool profile_changed(const std::vector<rs2::stream_profile>& current, const std::vector<rs2::stream_profile>& prev);
 void printPixelDepth(rs2::video_frame& other_frame, const rs2::depth_frame& depth_frame, float depth_scale);
 void silenceAllFeathers();
+void activeButton(const char* label, bool* a);
+void testButton(const char* label, bool* a);
+void setstyle();
+
 
 int main(int argc, char * argv[]) try
 {
@@ -77,9 +84,19 @@ int main(int argc, char * argv[]) try
     
     // Create and initialize GUI related objects
     window app(1280, 720, "LEO Belt"); // Simple window handling
+    glfwMakeContextCurrent(app);
     ImGui_ImplGlfw_Init(app, false);      // ImGui library intializition
     rs2::colorizer c;                     // Helper to colorize depth images
     texture renderer;                     // Helper for renderig images
+    
+    ImGui::CreateContext();
+    ImGuiIO& io=ImGui::GetIO(); (void)io;
+    //bool guiWindow = true;
+    //int k1=0, k2=0, k3=0, k4=0, k5=0, k6=0, k7=0, k8=0; // value for buzz intensity in settings
+    
+    static bool a1=true, a2=true, a3=true, a4=true,
+        a5=true, a6=true, a7=true, a8=true, t=false;
+
 
     // Create a pipeline to easily configure and start the camera
     rs2::pipeline pipe;
@@ -104,49 +121,151 @@ int main(int argc, char * argv[]) try
 
     while (app) // Application still alive?
     {
-        // Using the align object, we block the application until a frameset is available
-        rs2::frameset frameset = pipe.wait_for_frames();
-
-        if (profile_changed(pipe.get_active_profile().get_streams(), profile.get_streams()))
-        {
-            //If the profile was changed, update the align object, and also get the new device's depth scale
-            profile = pipe.get_active_profile();
-            align_to = find_stream_to_align(profile.get_streams());
-            align = rs2::align(align_to);
-            depth_scale = get_depth_scale(profile.get_device());
-        }
-
-        //Get processed aligned frame
-        auto processed = align.process(frameset);
-
-        // Trying to get both other and aligned depth frames
-        rs2::video_frame other_frame = processed.first(align_to);
-        rs2::depth_frame aligned_depth_frame = processed.get_depth_frame();
-
-        //If one of them is unavailable, continue iteration
-        if (!aligned_depth_frame || !other_frame)
-        {
-            continue;
-        }
-  
-        printPixelDepth(other_frame, aligned_depth_frame, depth_scale);
+        glfwPollEvents();
         
-        // Taking dimensions of the window for rendering purposes
-        float w = static_cast<float>(app.width());
-        float h = static_cast<float>(app.height());
-
+        ImGui_ImplGlfw_NewFrame(1);
+        ImGui::Begin("LEO Belt");
+        setstyle();
         
-
-        // At this point, "other_frame" is an altered frame, stripped form its background
-        // Calculating the position to place the frame in the window
-        rect altered_other_frame_rect{ 0, 0, w, h };
-        altered_other_frame_rect = altered_other_frame_rect.adjust_ratio({ static_cast<float>(other_frame.get_width()),static_cast<float>(other_frame.get_height()) });
-
-        // Render aligned image
-        renderer.render(other_frame, altered_other_frame_rect); 
+        if(ImGui::CollapsingHeader("System Status")) {
+            
+        // button display if actuators are active/inactive & battery status
+        // sliders to indicate each actuator's buzz intensity
+            ImGui::Text("            Actuator Status"); ImGui::SameLine(); 
+            ImGui::Text("                             Actuator Buzz Intensity");
+            ImGui::Text("Actuator 1: "); ImGui::SameLine(); 
+            activeButton("1 active?", &a1);
+            ImGui::SameLine();
+            ImGui::SliderInt("Actuator 1", &buzz[0], 0, 100);
+        
+            ImGui::Text("Actuator 2: "); ImGui::SameLine(); 
+            activeButton("2 active?", &a2); ImGui::SameLine();
+            ImGui::SliderInt("Actuator 2", &buzz[1], 0, 100);
+        
+            ImGui::Text("Actuator 3: "); ImGui::SameLine(); 
+            activeButton("3 active?", &a3);;ImGui::SameLine();
+            ImGui::SliderInt("Actuator 3", &buzz[2], 0, 100);
+        
+            ImGui::Text("Actuator 4: "); ImGui::SameLine(); 
+            activeButton("4 active?", &a4); ImGui::SameLine();
+            ImGui::SliderInt("Actuator 4", &buzz[3], 0, 100);
+        
+            ImGui::Text("Actuator 5: "); ImGui::SameLine(); 
+            activeButton("5 active?", &a5); ImGui::SameLine();
+            ImGui::SliderInt("Actuator 5", &buzz[4], 0, 100);
+        
+            ImGui::Text("Actuator 6: "); ImGui::SameLine(); 
+           activeButton("6 active?", &a6); ImGui::SameLine(); 
+            ImGui::SliderInt("Actuator 6", &buzz[5], 0, 100);
+        
+            ImGui::Text("Actuator 7: "); ImGui::SameLine(); 
+            activeButton("7 active?", &a7); ImGui::SameLine();
+            ImGui::SliderInt("Actuator 7", &buzz[6], 0, 100);
+        
+            ImGui::Text("Actuator 8: "); ImGui::SameLine(); 
+            activeButton("8 active?", &a8); ImGui::SameLine(); 
+            ImGui::SliderInt("Actuator 8", &buzz[7], 0, 100);
+        }
+        if(ImGui::CollapsingHeader("System Settings")) {
+            ImGui::Text("Adjust the distance for object detection.");
+            ImGui::SliderFloat("Maximum Distance", &dist,1.0,4.0);
+            /*
+            ImGui::Text("Set the maximum buzz intensity for each actuator here.");
+            * // k values need to be replaced with signals for each actuator
+            * // currently dummy values to display sliders
+            ImGui::Text("Actuator 1: "); ImGui::SameLine();
+            ImGui::SliderInt("a1", &k1, 0, 100);
+            ImGui::Text("Actuator 2: "); ImGui::SameLine();
+            ImGui::SliderInt("a2", &k2, 0, 100);
+            ImGui::Text("Actuator 3: "); ImGui::SameLine();
+            ImGui::SliderInt("a3", &k3, 0, 100);
+            ImGui::Text("Actuator 4: "); ImGui::SameLine();
+            ImGui::SliderInt("a4", &k4, 0, 100);
+            ImGui::Text("Actuator 5: "); ImGui::SameLine();
+            ImGui::SliderInt("a5", &k5, 0, 100);
+            ImGui::Text("Actuator 6: "); ImGui::SameLine();
+            ImGui::SliderInt("a6", &k6, 0, 100);
+            ImGui::Text("Actuator 7: "); ImGui::SameLine();
+            ImGui::SliderInt("a7", &k7, 0, 100);
+            ImGui::Text("Actuator 8: "); ImGui::SameLine();
+            ImGui::SliderInt("a8", &k8, 0, 100);
+            */
+        }
+        if(ImGui::CollapsingHeader("System Testing")) {
+            ImGui::Text("Test actuator functionality for uniform buzz intensity. Once the 'Test Actuators' button");
+            ImGui::Text(" is pressed, the actuators will all stop buzzing, then resume with their maximum ");
+            ImGui::Text("intensity.");
+            testButton("Test Actuators", &t);   
+            ImGui::Text("Actuator 1: "); ImGui::SameLine();
+            ImGui::SliderInt("A1", &test[0], 0, 100);
+            ImGui::Text("Actuator 2: "); ImGui::SameLine();
+            ImGui::SliderInt("A2", &test[1], 0, 100);
+            ImGui::Text("Actuator 3: "); ImGui::SameLine();
+            ImGui::SliderInt("A3", &test[2], 0, 100);
+            ImGui::Text("Actuator 4: "); ImGui::SameLine();
+            ImGui::SliderInt("A4", &test[3], 0, 100);
+            ImGui::Text("Actuator 5: "); ImGui::SameLine();
+            ImGui::SliderInt("A5", &test[4], 0, 100);
+            ImGui::Text("Actuator 6: "); ImGui::SameLine();
+            ImGui::SliderInt("A6", &test[5], 0, 100);
+            ImGui::Text("Actuator 7: "); ImGui::SameLine();
+            ImGui::SliderInt("A7", &test[6], 0, 100);
+            ImGui::Text("Actuator 8: "); ImGui::SameLine();
+            ImGui::SliderInt("A8", &test[7], 0, 100);
+        }
+        if(ImGui::CollapsingHeader("Camera Display")) {
+            // camera functionality must be implemented within this collapsing header
+            // for the signals to the status and test to work
+            //
+            // Using the align object, we block the application until a frameset is available
+            rs2::frameset frameset = pipe.wait_for_frames();
+    
+            if (profile_changed(pipe.get_active_profile().get_streams(), profile.get_streams()))
+            {
+                //If the profile was changed, update the align object, and also get the new device's depth scale
+                profile = pipe.get_active_profile();
+                align_to = find_stream_to_align(profile.get_streams());
+                align = rs2::align(align_to);
+                depth_scale = get_depth_scale(profile.get_device());
+            }
+    
+            //Get processed aligned frame
+            auto processed = align.process(frameset);
+    
+            // Trying to get both other and aligned depth frames
+            rs2::video_frame other_frame = processed.first(align_to);
+            rs2::depth_frame aligned_depth_frame = processed.get_depth_frame();
+    
+            //If one of them is unavailable, continue iteration
+            if (!aligned_depth_frame || !other_frame)
+            {
+                continue;
+            }
+      
+            printPixelDepth(other_frame, aligned_depth_frame, depth_scale);
+            
+            // Taking dimensions of the window for rendering purposes
+            float w = static_cast<float>(app.width());
+            float h = static_cast<float>(app.height());
+    
+            
+    
+            // At this point, "other_frame" is an altered frame, stripped form its background
+            // Calculating the position to place the frame in the window
+            rect altered_other_frame_rect{ 0, 0, w, h };
+            altered_other_frame_rect = altered_other_frame_rect.adjust_ratio({ static_cast<float>(other_frame.get_width()),static_cast<float>(other_frame.get_height()) });
+    
+            // Render aligned image
+            renderer.render(other_frame, altered_other_frame_rect);
+            
+            
+            //ImGui_ImplGlfw_NewFrame(1);
+            
+    } 
 
         // Using ImGui library to provide a slide controller to select the depth clipping distance
-        ImGui_ImplGlfw_NewFrame(1);
+        //ImGui_ImplGlfw_NewFrame(1);
+        ImGui::End();
         ImGui::Render();
     }
     silenceAllFeathers();
@@ -251,259 +370,319 @@ void printPixelDepth(rs2::video_frame& other_frame, const rs2::depth_frame& dept
             }
         }
     }
+    float dist1 = dist*0.167;
+    float dist2 = dist*0.333;
+    float dist3 = dist*0.5;
+    float dist4 = dist*0.667;
+    float dist5 = dist*0.833;
     //Feather 1
     //std::cout << "Quadrant 1 closest: " << closest[0] << "m -> Intensity: ";
     //printf("Quadrant 1 closest: %.3fm Intensity: ", closest[0]);
-    if(closest[0] < .33){
+    if(closest[0] < dist1){
         intensities[0] = 6;
+        buzz[0]=100;
         RS232_cputs(cport_nr, str_send[6]);
         //std::cout << "6/6" << std::endl;
-    } else if(closest[0] < .66){
+    } else if(closest[0] < dist2){
         intensities[0] = 5;
+        buzz[0]=83;
         RS232_cputs(cport_nr, str_send[5]);
         //std::cout << "5/6" << std::endl;
-    } else if(closest[0] < .99){
+    } else if(closest[0] < dist3){
         intensities[0] = 4;
+        buzz[0]=66;
         RS232_cputs(cport_nr, str_send[4]);
         //std::cout << "4/6" << std::endl;
-    } else if(closest[0] < 1.33){
+    } else if(closest[0] <dist4){
         intensities[0] = 3;
+        buzz[0]=49;
         RS232_cputs(cport_nr, str_send[3]);
         //std::cout << "3/6" << std::endl;
-    } else if(closest[0] < 1.66){
+    } else if(closest[0] < dist5){
         intensities[0] = 2;
+        buzz[0]=32;
         RS232_cputs(cport_nr, str_send[2]);
         //std::cout << "2/6" << std::endl;
-    } else if(closest[0] < 1.99){
-        intensities[0] = 1;
+    } else if(closest[0] < dist){
+        intensities[0] = 15;
         RS232_cputs(cport_nr, str_send[1]);
         //std::cout << "1/6" << std::endl;
     } else {
         intensities[0] = 0;
+        buzz[0]=0;
         RS232_cputs(cport_nr, str_send[0]);
         //std::cout << "0/6" << std::endl;
     }
     
     //Feather 2
     //printf("Quadrant 2 closest: %.3fm Intensity: ", closest[1]);
-    if(closest[1] < .33){
+    if(closest[1] < dist1){
         intensities[1] = 6;
+        buzz[1]=100;
         RS232_cputs(cport_nr, str_send[13]);
         //std::cout << "6/6\r" << std::endl;
-    } else if(closest[1] < .66){
+    } else if(closest[1] < dist2){
         intensities[1] = 5;
+        buzz[1]=83;
         RS232_cputs(cport_nr, str_send[12]);
         //std::cout << "5/6\r" << std::endl;
-    } else if(closest[1] < .99){
+    } else if(closest[1] < dist3){
         intensities[1] = 4;
+        buzz[1]=66;
         RS232_cputs(cport_nr, str_send[11]);
         //std::cout << "4/6\r" << std::endl;
-    } else if(closest[1] < 1.33){
+    } else if(closest[1] < dist4){
         intensities[1] = 3;
+        buzz[1]=49;
         RS232_cputs(cport_nr, str_send[10]);
         //std::cout << "3/6\r" << std::endl;
-    } else if(closest[1] < 1.66){
+    } else if(closest[1] < dist5){
         intensities[1] = 2;
+        buzz[1]=32;
         RS232_cputs(cport_nr, str_send[9]);
         //std::cout << "2/6\r" << std::endl;
-    } else if(closest[1] < 1.99){
+    } else if(closest[1] < dist){
         intensities[1] = 1;
+        buzz[1]=15;
         RS232_cputs(cport_nr, str_send[8]);
         //std::cout << "1/6\r" << std::endl;
     } else {
         intensities[1] = 0;
+        buzz[1]=0;
         RS232_cputs(cport_nr, str_send[7]);
         //std::cout << "0/6\r" << std::endl;
     }
     
     //Feather 3
     //printf("Quadrant 3 closest: %.3fm Intensity: ", closest[2]);
-    if(closest[2] < .33){
+    if(closest[2] < dist1){
         intensities[2] = 6;
+        buzz[2]=100;
         RS232_cputs(cport_nr, str_send[20]);
         //std::cout << "6/6" << std::endl;
-    } else if(closest[2] < .66){
+    } else if(closest[2] < dist2){
         intensities[2] = 5;
+        buzz[2]=83;
         RS232_cputs(cport_nr, str_send[19]);
         //std::cout << "5/6" << std::endl;
-    } else if(closest[2] < .99){
+    } else if(closest[2] < dist3){
         intensities[2] = 4;
+        buzz[2]=66;
         RS232_cputs(cport_nr, str_send[18]);
         //std::cout << "4/6" << std::endl;
-    } else if(closest[2] < 1.33){
+    } else if(closest[2] < dist4){
         intensities[2] = 3;
+        buzz[2]=49;
         RS232_cputs(cport_nr, str_send[17]);
         //std::cout << "3/6" << std::endl;
-    } else if(closest[2] < 1.66){
+    } else if(closest[2] < dist5){
         intensities[2] = 2;
+        buzz[2]=32;
         RS232_cputs(cport_nr, str_send[16]);
         //std::cout << "2/6" << std::endl;
-    } else if(closest[2] < 1.99){
+    } else if(closest[2] < dist){
         intensities[2] = 1;
+        buzz[2]=15;
         RS232_cputs(cport_nr, str_send[15]);
         //std::cout << "1/6" << std::endl;
     } else {
         intensities[2] = 0;
+        buzz[2]=0;
         RS232_cputs(cport_nr, str_send[14]);
         //std::cout << "0/6" << std::endl;
     }
     
     //Feather 4
     //printf("Quadrant 4 closest: %.3fm Intensity: ", closest[3]);
-    if(closest[3] < .33){
+    if(closest[3] < dist1){
         intensities[3] = 6;
+        buzz[3]=100;
        RS232_cputs(cport_nr, str_send[27]);
         //std::cout << "6/6" << std::endl;
-    } else if(closest[3] < .66){
+    } else if(closest[3] < dist2){
         intensities[3] = 5;
+        buzz[3]=83;
        RS232_cputs(cport_nr, str_send[26]);
         //std::cout << "5/6" << std::endl;
-    } else if(closest[3] < .99){
+    } else if(closest[3] < dist3){
         intensities[3] = 4;
+        buzz[3]=66;
        RS232_cputs(cport_nr, str_send[25]);
         //std::cout << "4/6" << std::endl;
-    } else if(closest[3] < 1.33){
+    } else if(closest[3] < dist4){
         intensities[3] = 3;
+        buzz[3]=49;
        RS232_cputs(cport_nr, str_send[24]);
         //std::cout << "3/6" << std::endl;
-    } else if(closest[3] < 1.66){
+    } else if(closest[3] < dist5){
         intensities[3] = 2;
+        buzz[3]=32;
        RS232_cputs(cport_nr, str_send[23]);
         //std::cout << "2/6" << std::endl;
-    } else if(closest[3] < 1.99){
+    } else if(closest[3] < dist){
         intensities[3] = 1;
+        buzz[3]=15;
        RS232_cputs(cport_nr, str_send[22]);
         //std::cout << "1/6" << std::endl;
     } else {
         intensities[3] = 0;
+        buzz[3]=0;
        RS232_cputs(cport_nr, str_send[21]);
         //std::cout << "0/6" << std::endl;
     }
     
     //Feather 5
     //printf("Quadrant 5 closest: %.3fm Intensity: ", closest[4]);
-    if(closest[4] < .33){
+    if(closest[4] < dist1){
         intensities[4] = 6;
+        buzz[4]=100;
        RS232_cputs(cport_nr, str_send[34]);
         //std::cout << "6/6" << std::endl;
-    } else if(closest[4] < .66){
+    } else if(closest[4] < dist2){
         intensities[4] = 5;
+        buzz[4]=83;
        RS232_cputs(cport_nr, str_send[33]);
         //std::cout << "5/6" << std::endl;
-    } else if(closest[4] < .99){
+    } else if(closest[4] < dist3){
         intensities[4] = 4;
+        buzz[4]=66;
        RS232_cputs(cport_nr, str_send[32]);
         //std::cout << "4/6" << std::endl;
-    } else if(closest[4] < 1.33){
+    } else if(closest[4] < dist4){
         intensities[4] = 3;
+        buzz[4]=49;
        RS232_cputs(cport_nr, str_send[31]);
         //std::cout << "3/6" << std::endl;
-    } else if(closest[4] < 1.66){
+    } else if(closest[4] < dist5){
         intensities[4] = 2;
+        buzz[4]=32;
        RS232_cputs(cport_nr, str_send[30]);
         //std::cout << "2/6" << std::endl;
-    } else if(closest[4] < 1.99){
+    } else if(closest[4] < dist){
         intensities[4] = 1;
+        buzz[4]=15;
        RS232_cputs(cport_nr, str_send[29]);
         //std::cout << "1/6" << std::endl;
     } else {
         intensities[4] = 0;
+        buzz[4]=0;
        RS232_cputs(cport_nr, str_send[28]);
         //std::cout << "0/6" << std::endl;
     }
     
     //Feather 6
     //printf("Quadrant 6 closest: %.3fm Intensity: ", closest[5]);
-    if(closest[5] < .33){
+    if(closest[5] < dist1){
         intensities[5] = 6;
+        buzz[5]=100;
        RS232_cputs(cport_nr, str_send[41]);
         //std::cout << "6/6" << std::endl;
-    } else if(closest[5] < .66){
+    } else if(closest[5] < dist2){
         intensities[5] = 5;
+        buzz[5]=83;
        RS232_cputs(cport_nr, str_send[40]);
         //std::cout << "5/6" << std::endl;
-    } else if(closest[5] < .99){
+    } else if(closest[5] < dist3){
         intensities[5] = 4;
+        buzz[5]=66;
        RS232_cputs(cport_nr, str_send[39]);
         //std::cout << "4/6" << std::endl;
-    } else if(closest[5] < 1.33){
+    } else if(closest[5] < dist4){
         intensities[5] = 3;
+        buzz[5]=49;
        RS232_cputs(cport_nr, str_send[38]);
         //std::cout << "3/6" << std::endl;
-    } else if(closest[5] < 1.66){
+    } else if(closest[5] < dist5){
         intensities[5] = 2;
+        buzz[5]=32;
        RS232_cputs(cport_nr, str_send[37]);
         //std::cout << "2/6" << std::endl;
-    } else if(closest[5] < 1.99){
+    } else if(closest[5] < dist){
         intensities[5] = 1;
+        buzz[5]=15;
        RS232_cputs(cport_nr, str_send[36]);
         //std::cout << "1/6" << std::endl;
     } else {
         intensities[5] = 0;
+        buzz[5]=0;
        RS232_cputs(cport_nr, str_send[35]);
         //std::cout << "0/6" << std::endl;
     }
     
     //Feather 7
     //printf("Quadrant 7 closest: %.3fm Intensity: ", closest[6]);
-    if(closest[6] < .33){
+    if(closest[6] < dist1){
         intensities[6] = 6;
+        buzz[6]=100;
        RS232_cputs(cport_nr, str_send[48]);
         //std::cout << "6/6" << std::endl;
-    } else if(closest[6] < .66){
+    } else if(closest[6] < dist2){
         intensities[6] = 5;
+        buzz[6]=83;
        RS232_cputs(cport_nr, str_send[47]);
         //std::cout << "5/6" << std::endl;
-    } else if(closest[6] < .99){
+    } else if(closest[6] < dist3){
         intensities[6] = 4;
+        buzz[6]=66;
        RS232_cputs(cport_nr, str_send[46]);
         //std::cout << "4/6" << std::endl;
-    } else if(closest[6] < 1.33){
+    } else if(closest[6] < dist4){
         intensities[6] = 3;
+        buzz[6]=49;
        RS232_cputs(cport_nr, str_send[45]);
         //std::cout << "3/6" << std::endl;
-    } else if(closest[6] < 1.66){
+    } else if(closest[6] < dist5){
         intensities[6] = 2;
+        buzz[6]=32;
        RS232_cputs(cport_nr, str_send[44]);
         //std::cout << "2/6" << std::endl;
-    } else if(closest[6] < 1.99){
+    } else if(closest[6] < dist){
         intensities[6] = 1;
+        buzz[6]=15;
        RS232_cputs(cport_nr, str_send[43]);
         //std::cout << "1/6" << std::endl;
     } else {
         intensities[6] = 0;
+        buzz[6]=0;
        RS232_cputs(cport_nr, str_send[42]);
         //std::cout << "0/6" << std::endl;
     }
     
     //Feather 8
     //printf("Quadrant 8 closest: %.3fm Intensity: ", closest[7]);
-    if(closest[7] < .33){
+    if(closest[7] < dist1){
         intensities[7] = 6;
+        buzz[7]=100;
        RS232_cputs(cport_nr, str_send[55]);
         //std::cout << "6/6" << std::endl;
-    } else if(closest[7] < .66){
+    } else if(closest[7] < dist2){
         intensities[7] = 5;
+        buzz[7]=83;
        RS232_cputs(cport_nr, str_send[54]);
         //std::cout << "5/6" << std::endl;
-    } else if(closest[7] < .99){
+    } else if(closest[7] < dist3){
         intensities[7] = 4;
+        buzz[7]=66;
        RS232_cputs(cport_nr, str_send[53]);
         //std::cout << "4/6" << std::endl;
-    } else if(closest[7] < 1.33){
+    } else if(closest[7] < dist4){
         intensities[7] = 3;
+        buzz[7]=49;
        RS232_cputs(cport_nr, str_send[52]);
         //std::cout << "3/6" << std::endl;
-    } else if(closest[7] < 1.66){
+    } else if(closest[7] < dist5){
         intensities[7] = 2;
+        buzz[7]=32;
        RS232_cputs(cport_nr, str_send[51]);
         //std::cout << "2/6" << std::endl;
-    } else if(closest[7] < 1.99){
+    } else if(closest[7] < dist){
         intensities[7] = 1;
+        buzz[7]=15;
        RS232_cputs(cport_nr, str_send[50]);
         //std::cout << "1/6" << std::endl;
     } else {
         intensities[7] = 0;
+        buzz[7]=0;
        RS232_cputs(cport_nr, str_send[49]);
         //std::cout << "0/6" << std::endl;
     }
@@ -803,4 +982,128 @@ bool profile_changed(const std::vector<rs2::stream_profile>& current, const std:
         }
     }
     return false;
+}
+
+void activeButton(const char* label, bool* a){
+    
+    int pushedColors = 0;
+    
+    // when active - grean
+    // when inactive - red
+    if(*a) {
+        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(ImColor(0,0,0,255)));
+        ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(ImColor(66, 230, 64, 255)));
+        ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(ImColor(66, 230, 64, 255)));
+        ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(ImColor(66, 230, 64, 255)));
+        pushedColors += 4;
+    } else {
+        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(ImColor(255,255,255,255)));
+        ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(ImColor(224, 25, 48, 255)));
+        ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(ImColor(224, 25, 48, 255)));
+        ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(ImColor(224, 25, 48, 255)));
+        pushedColors += 4;
+    }
+    
+    // change bool value upon button press to change colors
+    if(ImGui::Button(label)) {
+        *a = !(*a);
+    }
+    ImGui::PopStyleColor(pushedColors);
+    //ImGui::SameLine(0,0);
+}
+
+// button to "test" the feathers. sets all feather output to max intensity on one press
+// and to zero upon following press
+void testButton(const char* label, bool* a) {
+    if(*a) {
+        //silenceAllFeathers();
+        RS232_cputs(cport_nr, str_send[6]);
+        RS232_cputs(cport_nr, str_send[13]);
+        RS232_cputs(cport_nr, str_send[20]);
+        RS232_cputs(cport_nr, str_send[27]);
+        RS232_cputs(cport_nr, str_send[34]);
+        RS232_cputs(cport_nr, str_send[41]);
+        RS232_cputs(cport_nr, str_send[48]);
+        RS232_cputs(cport_nr, str_send[55]);
+        test[0]=100;  test[1]=100; test[2]=100;
+        test[3]=100; test[4]=100; test[5]=100;
+        test[6]=100; test[7]=100;
+    } else {
+        silenceAllFeathers();
+        test[0]=0; test[1]=0; test[2]=0;
+        test[3]=0; test[4]=0; test[5]=0;
+        test[6]=0; test[7]=0;
+    }
+    
+    if(ImGui::Button(label)) {
+        *a=!(*a);
+    }
+
+}
+
+// created "light style" for the gui so that the background is solid
+// and the colors are easy to see and read
+void setstyle()
+{
+        ImGuiStyle* style = &ImGui::GetStyle();
+        ImVec4* colors = style->Colors;
+ 
+        colors[ImGuiCol_Text] = ImColor(0,0,0,255);
+        colors[ImGuiCol_TextDisabled] = ImColor(153,153,153,255);
+        colors[ImGuiCol_WindowBg] = ImColor(240,240,240,255);
+        //colors[ImGuiCol_ChildBg] = ImVec4(0.280f, 0.280f, 0.280f, 0.000f);
+        colors[ImGuiCol_PopupBg] = ImColor(240,240,240,250);
+        colors[ImGuiCol_Border] = ImColor(0,0,0,77);
+        colors[ImGuiCol_BorderShadow] = ImColor(0,0,0,255);
+        colors[ImGuiCol_FrameBg] = ImColor(255,255,2555,255);
+        colors[ImGuiCol_FrameBgHovered] = ImColor(66,150,250,102);
+        colors[ImGuiCol_FrameBgActive] = ImColor(66,150,250,171);
+        colors[ImGuiCol_TitleBg] = ImColor(245,245,245,255);
+        colors[ImGuiCol_TitleBgActive] = ImColor(209,209,209,255);
+        colors[ImGuiCol_TitleBgCollapsed] = ImColor(255,255,255,130);
+        colors[ImGuiCol_MenuBarBg] = ImColor(219,219,219,255);
+        colors[ImGuiCol_ScrollbarBg] = ImColor(250,250,250,135);
+        colors[ImGuiCol_ScrollbarGrab] = ImColor(176,176,176,204);
+        colors[ImGuiCol_ScrollbarGrabHovered] = ImColor(125,125,125,204);
+        colors[ImGuiCol_ScrollbarGrabActive] = ImColor(125,125,125,255);
+        colors[ImGuiCol_CheckMark] = ImColor(66,150,250,255);
+        colors[ImGuiCol_SliderGrab] = ImColor(66,150,250,199);
+        colors[ImGuiCol_SliderGrabActive] = ImColor(117,138,204,153);
+        colors[ImGuiCol_Button] = ImColor(66,150,250,102);
+        colors[ImGuiCol_ButtonHovered] = ImColor(66,150,250,255);
+        colors[ImGuiCol_ButtonActive] = ImColor(15,135,250,255);
+        colors[ImGuiCol_Header] = ImColor(66,150,250,79);
+        colors[ImGuiCol_HeaderHovered] = ImColor(66,150,250,204);
+        colors[ImGuiCol_HeaderActive] = ImColor(66,150,250,255);
+        //colors[ImGuiCol_Separator] = colors[ImGuiCol_Border];
+        //colors[ImGuiCol_SeparatorHovered] = ImVec4(0.391f, 0.391f, 0.391f, 1.000f);
+        //colors[ImGuiCol_SeparatorActive] = ImVec4(1.000f, 0.391f, 0.000f, 1.000f);
+        colors[ImGuiCol_ResizeGrip] = ImColor(204,204,204,143);
+        colors[ImGuiCol_ResizeGripHovered] = ImColor(66,150,250,171);
+        colors[ImGuiCol_ResizeGripActive] = ImColor(66,150,250,242);
+        //colors[ImGuiCol_Tab] = ImVec4(0.098f, 0.098f, 0.098f, 1.000f);
+        //colors[ImGuiCol_TabHovered] = ImVec4(0.352f, 0.352f, 0.352f, 1.000f);
+        //colors[ImGuiCol_TabActive] = ImVec4(0.195f, 0.195f, 0.195f, 1.000f);
+        //colors[ImGuiCol_TabUnfocused] = ImVec4(0.098f, 0.098f, 0.098f, 1.000f);
+        //colors[ImGuiCol_TabUnfocusedActive] = ImVec4(0.195f, 0.195f, 0.195f, 1.000f);
+        //colors[ImGuiCol_DockingPreview] = ImVec4(1.000f, 0.391f, 0.000f, 0.781f);
+        //colors[ImGuiCol_DockingEmptyBg] = ImVec4(0.180f, 0.180f, 0.180f, 1.000f);
+        colors[ImGuiCol_TextSelectedBg] = ImColor(66,150,250,89);
+        //colors[ImGuiCol_DragDropTarget] = ImVec4(1.000f, 0.391f, 0.000f, 1.000f);
+        //colors[ImGuiCol_NavHighlight] = ImVec4(1.000f, 0.391f, 0.000f, 1.000f);
+        //colors[ImGuiCol_NavWindowingHighlight] = ImVec4(1.000f, 0.391f, 0.000f, 1.000f);
+        //colors[ImGuiCol_NavWindowingDimBg] = ImVec4(0.000f, 0.000f, 0.000f, 0.586f);
+        //colors[ImGuiCol_ModalWindowDimBg] = ImVec4(0.000f, 0.000f, 0.000f, 0.586f);
+ 
+        style->FrameRounding = 2.0f;
+        style->GrabMinSize = 7.0f;
+        style->ScrollbarRounding = 12.0f;
+        style->ScrollbarSize = 13.0f;
+        //style->TabBorderSize = 1.0f;
+        //style->TabRounding = 0.0f;
+        style->WindowRounding = 4.0f;
+        
+        //style->WindowPadding = 8.0f;
+        //style->FramePadding = 5.0f;
+ 
 }

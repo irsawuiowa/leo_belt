@@ -1,7 +1,7 @@
-/home/pi/leo_belt/build/CMakeFiles/edit_cache.dir
-/home/pi/leo_belt/build/CMakeFiles/install/strip.dir
-/home/pi/leo_belt/build/CMakeFiles/leo-belt.dir
-/home/pi/leo_belt/build/CMakeFiles/install.dir
-/home/pi/leo_belt/build/CMakeFiles/rebuild_cache.dir
-/home/pi/leo_belt/build/CMakeFiles/list_install_components.dir
-/home/pi/leo_belt/build/CMakeFiles/install/local.dir
+/home/pi/Desktop/newgui/leo_belt/build/CMakeFiles/edit_cache.dir
+/home/pi/Desktop/newgui/leo_belt/build/CMakeFiles/install/strip.dir
+/home/pi/Desktop/newgui/leo_belt/build/CMakeFiles/leo-belt.dir
+/home/pi/Desktop/newgui/leo_belt/build/CMakeFiles/install.dir
+/home/pi/Desktop/newgui/leo_belt/build/CMakeFiles/rebuild_cache.dir
+/home/pi/Desktop/newgui/leo_belt/build/CMakeFiles/list_install_components.dir
+/home/pi/Desktop/newgui/leo_belt/build/CMakeFiles/install/local.dir

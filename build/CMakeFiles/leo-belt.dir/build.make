@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/leo_belt
+CMAKE_SOURCE_DIR = /home/pi/Desktop/newgui/leo_belt
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/leo_belt/build
+CMAKE_BINARY_DIR = /home/pi/Desktop/newgui/leo_belt/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/leo-belt.dir/depend.make
@@ -59,68 +59,68 @@ include CMakeFiles/leo-belt.dir/flags.make
 
 CMakeFiles/leo-belt.dir/leo-belt.cpp.o: CMakeFiles/leo-belt.dir/flags.make
 CMakeFiles/leo-belt.dir/leo-belt.cpp.o: ../leo-belt.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/leo_belt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/leo-belt.dir/leo-belt.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/leo-belt.dir/leo-belt.cpp.o -c /home/pi/leo_belt/leo-belt.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Desktop/newgui/leo_belt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/leo-belt.dir/leo-belt.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/leo-belt.dir/leo-belt.cpp.o -c /home/pi/Desktop/newgui/leo_belt/leo-belt.cpp
 
 CMakeFiles/leo-belt.dir/leo-belt.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/leo-belt.dir/leo-belt.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/leo_belt/leo-belt.cpp > CMakeFiles/leo-belt.dir/leo-belt.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Desktop/newgui/leo_belt/leo-belt.cpp > CMakeFiles/leo-belt.dir/leo-belt.cpp.i
 
 CMakeFiles/leo-belt.dir/leo-belt.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/leo-belt.dir/leo-belt.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/leo_belt/leo-belt.cpp -o CMakeFiles/leo-belt.dir/leo-belt.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Desktop/newgui/leo_belt/leo-belt.cpp -o CMakeFiles/leo-belt.dir/leo-belt.cpp.s
 
 CMakeFiles/leo-belt.dir/third-party/imgui/imgui.cpp.o: CMakeFiles/leo-belt.dir/flags.make
 CMakeFiles/leo-belt.dir/third-party/imgui/imgui.cpp.o: ../third-party/imgui/imgui.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/leo_belt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/leo-belt.dir/third-party/imgui/imgui.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/leo-belt.dir/third-party/imgui/imgui.cpp.o -c /home/pi/leo_belt/third-party/imgui/imgui.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Desktop/newgui/leo_belt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/leo-belt.dir/third-party/imgui/imgui.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/leo-belt.dir/third-party/imgui/imgui.cpp.o -c /home/pi/Desktop/newgui/leo_belt/third-party/imgui/imgui.cpp
 
 CMakeFiles/leo-belt.dir/third-party/imgui/imgui.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/leo-belt.dir/third-party/imgui/imgui.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/leo_belt/third-party/imgui/imgui.cpp > CMakeFiles/leo-belt.dir/third-party/imgui/imgui.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Desktop/newgui/leo_belt/third-party/imgui/imgui.cpp > CMakeFiles/leo-belt.dir/third-party/imgui/imgui.cpp.i
 
 CMakeFiles/leo-belt.dir/third-party/imgui/imgui.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/leo-belt.dir/third-party/imgui/imgui.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/leo_belt/third-party/imgui/imgui.cpp -o CMakeFiles/leo-belt.dir/third-party/imgui/imgui.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Desktop/newgui/leo_belt/third-party/imgui/imgui.cpp -o CMakeFiles/leo-belt.dir/third-party/imgui/imgui.cpp.s
 
 CMakeFiles/leo-belt.dir/third-party/imgui/imgui_draw.cpp.o: CMakeFiles/leo-belt.dir/flags.make
 CMakeFiles/leo-belt.dir/third-party/imgui/imgui_draw.cpp.o: ../third-party/imgui/imgui_draw.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/leo_belt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/leo-belt.dir/third-party/imgui/imgui_draw.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/leo-belt.dir/third-party/imgui/imgui_draw.cpp.o -c /home/pi/leo_belt/third-party/imgui/imgui_draw.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Desktop/newgui/leo_belt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/leo-belt.dir/third-party/imgui/imgui_draw.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/leo-belt.dir/third-party/imgui/imgui_draw.cpp.o -c /home/pi/Desktop/newgui/leo_belt/third-party/imgui/imgui_draw.cpp
 
 CMakeFiles/leo-belt.dir/third-party/imgui/imgui_draw.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/leo-belt.dir/third-party/imgui/imgui_draw.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/leo_belt/third-party/imgui/imgui_draw.cpp > CMakeFiles/leo-belt.dir/third-party/imgui/imgui_draw.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Desktop/newgui/leo_belt/third-party/imgui/imgui_draw.cpp > CMakeFiles/leo-belt.dir/third-party/imgui/imgui_draw.cpp.i
 
 CMakeFiles/leo-belt.dir/third-party/imgui/imgui_draw.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/leo-belt.dir/third-party/imgui/imgui_draw.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/leo_belt/third-party/imgui/imgui_draw.cpp -o CMakeFiles/leo-belt.dir/third-party/imgui/imgui_draw.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Desktop/newgui/leo_belt/third-party/imgui/imgui_draw.cpp -o CMakeFiles/leo-belt.dir/third-party/imgui/imgui_draw.cpp.s
 
 CMakeFiles/leo-belt.dir/third-party/imgui/imgui_impl_glfw.cpp.o: CMakeFiles/leo-belt.dir/flags.make
 CMakeFiles/leo-belt.dir/third-party/imgui/imgui_impl_glfw.cpp.o: ../third-party/imgui/imgui_impl_glfw.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/leo_belt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/leo-belt.dir/third-party/imgui/imgui_impl_glfw.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/leo-belt.dir/third-party/imgui/imgui_impl_glfw.cpp.o -c /home/pi/leo_belt/third-party/imgui/imgui_impl_glfw.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Desktop/newgui/leo_belt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/leo-belt.dir/third-party/imgui/imgui_impl_glfw.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/leo-belt.dir/third-party/imgui/imgui_impl_glfw.cpp.o -c /home/pi/Desktop/newgui/leo_belt/third-party/imgui/imgui_impl_glfw.cpp
 
 CMakeFiles/leo-belt.dir/third-party/imgui/imgui_impl_glfw.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/leo-belt.dir/third-party/imgui/imgui_impl_glfw.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/leo_belt/third-party/imgui/imgui_impl_glfw.cpp > CMakeFiles/leo-belt.dir/third-party/imgui/imgui_impl_glfw.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Desktop/newgui/leo_belt/third-party/imgui/imgui_impl_glfw.cpp > CMakeFiles/leo-belt.dir/third-party/imgui/imgui_impl_glfw.cpp.i
 
 CMakeFiles/leo-belt.dir/third-party/imgui/imgui_impl_glfw.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/leo-belt.dir/third-party/imgui/imgui_impl_glfw.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/leo_belt/third-party/imgui/imgui_impl_glfw.cpp -o CMakeFiles/leo-belt.dir/third-party/imgui/imgui_impl_glfw.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Desktop/newgui/leo_belt/third-party/imgui/imgui_impl_glfw.cpp -o CMakeFiles/leo-belt.dir/third-party/imgui/imgui_impl_glfw.cpp.s
 
 CMakeFiles/leo-belt.dir/rs232.c.o: CMakeFiles/leo-belt.dir/flags.make
 CMakeFiles/leo-belt.dir/rs232.c.o: ../rs232.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/leo_belt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/leo-belt.dir/rs232.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/leo-belt.dir/rs232.c.o   -c /home/pi/leo_belt/rs232.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Desktop/newgui/leo_belt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/leo-belt.dir/rs232.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/leo-belt.dir/rs232.c.o   -c /home/pi/Desktop/newgui/leo_belt/rs232.c
 
 CMakeFiles/leo-belt.dir/rs232.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/leo-belt.dir/rs232.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/pi/leo_belt/rs232.c > CMakeFiles/leo-belt.dir/rs232.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/pi/Desktop/newgui/leo_belt/rs232.c > CMakeFiles/leo-belt.dir/rs232.c.i
 
 CMakeFiles/leo-belt.dir/rs232.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/leo-belt.dir/rs232.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/pi/leo_belt/rs232.c -o CMakeFiles/leo-belt.dir/rs232.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/pi/Desktop/newgui/leo_belt/rs232.c -o CMakeFiles/leo-belt.dir/rs232.c.s
 
 # Object files for target leo-belt
 leo__belt_OBJECTS = \
@@ -146,7 +146,7 @@ leo-belt: /usr/lib/arm-linux-gnueabihf/librt.so
 leo-belt: /usr/lib/arm-linux-gnueabihf/libm.so
 leo-belt: /usr/lib/arm-linux-gnueabihf/libX11.so
 leo-belt: CMakeFiles/leo-belt.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pi/leo_belt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable leo-belt"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pi/Desktop/newgui/leo_belt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable leo-belt"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/leo-belt.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -159,6 +159,6 @@ CMakeFiles/leo-belt.dir/clean:
 .PHONY : CMakeFiles/leo-belt.dir/clean
 
 CMakeFiles/leo-belt.dir/depend:
-	cd /home/pi/leo_belt/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/pi/leo_belt /home/pi/leo_belt /home/pi/leo_belt/build /home/pi/leo_belt/build /home/pi/leo_belt/build/CMakeFiles/leo-belt.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/pi/Desktop/newgui/leo_belt/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/pi/Desktop/newgui/leo_belt /home/pi/Desktop/newgui/leo_belt /home/pi/Desktop/newgui/leo_belt/build /home/pi/Desktop/newgui/leo_belt/build /home/pi/Desktop/newgui/leo_belt/build/CMakeFiles/leo-belt.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/leo-belt.dir/depend
 
