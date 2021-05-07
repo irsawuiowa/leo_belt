@@ -1,27 +1,27 @@
 [
 {
-  "directory": "/home/pi/leo_belt/build",
-  "command": "/usr/bin/c++   -I/home/pi/leo_belt/leo-belt -I/home/pi/leo_belt/common -I/home/pi/leo_belt/third-party/imgui -isystem /usr/local/include   -std=c++11   -std=gnu++11 -o CMakeFiles/leo-belt.dir/leo-belt.cpp.o -c /home/pi/leo_belt/leo-belt.cpp",
-  "file": "/home/pi/leo_belt/leo-belt.cpp"
+  "directory": "/home/pi/Desktop/newgui/leo_belt/build",
+  "command": "/usr/bin/c++   -I/home/pi/Desktop/newgui/leo_belt/leo-belt -I/home/pi/Desktop/newgui/leo_belt/common -I/home/pi/Desktop/newgui/leo_belt/third-party/imgui -isystem /usr/local/include   -std=c++11   -std=gnu++11 -o CMakeFiles/leo-belt.dir/leo-belt.cpp.o -c /home/pi/Desktop/newgui/leo_belt/leo-belt.cpp",
+  "file": "/home/pi/Desktop/newgui/leo_belt/leo-belt.cpp"
 },
 {
-  "directory": "/home/pi/leo_belt/build",
-  "command": "/usr/bin/c++   -I/home/pi/leo_belt/leo-belt -I/home/pi/leo_belt/common -I/home/pi/leo_belt/third-party/imgui -isystem /usr/local/include   -std=c++11   -std=gnu++11 -o CMakeFiles/leo-belt.dir/third-party/imgui/imgui.cpp.o -c /home/pi/leo_belt/third-party/imgui/imgui.cpp",
-  "file": "/home/pi/leo_belt/third-party/imgui/imgui.cpp"
+  "directory": "/home/pi/Desktop/newgui/leo_belt/build",
+  "command": "/usr/bin/c++   -I/home/pi/Desktop/newgui/leo_belt/leo-belt -I/home/pi/Desktop/newgui/leo_belt/common -I/home/pi/Desktop/newgui/leo_belt/third-party/imgui -isystem /usr/local/include   -std=c++11   -std=gnu++11 -o CMakeFiles/leo-belt.dir/third-party/imgui/imgui.cpp.o -c /home/pi/Desktop/newgui/leo_belt/third-party/imgui/imgui.cpp",
+  "file": "/home/pi/Desktop/newgui/leo_belt/third-party/imgui/imgui.cpp"
 },
 {
-  "directory": "/home/pi/leo_belt/build",
-  "command": "/usr/bin/c++   -I/home/pi/leo_belt/leo-belt -I/home/pi/leo_belt/common -I/home/pi/leo_belt/third-party/imgui -isystem /usr/local/include   -std=c++11   -std=gnu++11 -o CMakeFiles/leo-belt.dir/third-party/imgui/imgui_draw.cpp.o -c /home/pi/leo_belt/third-party/imgui/imgui_draw.cpp",
-  "file": "/home/pi/leo_belt/third-party/imgui/imgui_draw.cpp"
+  "directory": "/home/pi/Desktop/newgui/leo_belt/build",
+  "command": "/usr/bin/c++   -I/home/pi/Desktop/newgui/leo_belt/leo-belt -I/home/pi/Desktop/newgui/leo_belt/common -I/home/pi/Desktop/newgui/leo_belt/third-party/imgui -isystem /usr/local/include   -std=c++11   -std=gnu++11 -o CMakeFiles/leo-belt.dir/third-party/imgui/imgui_draw.cpp.o -c /home/pi/Desktop/newgui/leo_belt/third-party/imgui/imgui_draw.cpp",
+  "file": "/home/pi/Desktop/newgui/leo_belt/third-party/imgui/imgui_draw.cpp"
 },
 {
-  "directory": "/home/pi/leo_belt/build",
-  "command": "/usr/bin/c++   -I/home/pi/leo_belt/leo-belt -I/home/pi/leo_belt/common -I/home/pi/leo_belt/third-party/imgui -isystem /usr/local/include   -std=c++11   -std=gnu++11 -o CMakeFiles/leo-belt.dir/third-party/imgui/imgui_impl_glfw.cpp.o -c /home/pi/leo_belt/third-party/imgui/imgui_impl_glfw.cpp",
-  "file": "/home/pi/leo_belt/third-party/imgui/imgui_impl_glfw.cpp"
+  "directory": "/home/pi/Desktop/newgui/leo_belt/build",
+  "command": "/usr/bin/c++   -I/home/pi/Desktop/newgui/leo_belt/leo-belt -I/home/pi/Desktop/newgui/leo_belt/common -I/home/pi/Desktop/newgui/leo_belt/third-party/imgui -isystem /usr/local/include   -std=c++11   -std=gnu++11 -o CMakeFiles/leo-belt.dir/third-party/imgui/imgui_impl_glfw.cpp.o -c /home/pi/Desktop/newgui/leo_belt/third-party/imgui/imgui_impl_glfw.cpp",
+  "file": "/home/pi/Desktop/newgui/leo_belt/third-party/imgui/imgui_impl_glfw.cpp"
 },
 {
-  "directory": "/home/pi/leo_belt/build",
-  "command": "/usr/bin/cc  -I/home/pi/leo_belt/leo-belt -I/home/pi/leo_belt/common -I/home/pi/leo_belt/third-party/imgui -isystem /usr/local/include   -std=c11   -o CMakeFiles/leo-belt.dir/rs232.c.o   -c /home/pi/leo_belt/rs232.c",
-  "file": "/home/pi/leo_belt/rs232.c"
+  "directory": "/home/pi/Desktop/newgui/leo_belt/build",
+  "command": "/usr/bin/cc  -I/home/pi/Desktop/newgui/leo_belt/leo-belt -I/home/pi/Desktop/newgui/leo_belt/common -I/home/pi/Desktop/newgui/leo_belt/third-party/imgui -isystem /usr/local/include   -std=c11   -o CMakeFiles/leo-belt.dir/rs232.c.o   -c /home/pi/Desktop/newgui/leo_belt/rs232.c",
+  "file": "/home/pi/Desktop/newgui/leo_belt/rs232.c"
 }
 ]

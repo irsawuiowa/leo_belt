@@ -7,11 +7,11 @@ C_FLAGS =  -std=c11
 
 C_DEFINES = 
 
-C_INCLUDES = -I/home/pi/leo_belt/leo-belt -I/home/pi/leo_belt/common -I/home/pi/leo_belt/third-party/imgui -isystem /usr/local/include 
+C_INCLUDES = -I/home/pi/Desktop/newgui/leo_belt/leo-belt -I/home/pi/Desktop/newgui/leo_belt/common -I/home/pi/Desktop/newgui/leo_belt/third-party/imgui -isystem /usr/local/include 
 
 CXX_FLAGS =  -std=c++11   -std=gnu++11
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/pi/leo_belt/leo-belt -I/home/pi/leo_belt/common -I/home/pi/leo_belt/third-party/imgui -isystem /usr/local/include 
+CXX_INCLUDES = -I/home/pi/Desktop/newgui/leo_belt/leo-belt -I/home/pi/Desktop/newgui/leo_belt/common -I/home/pi/Desktop/newgui/leo_belt/third-party/imgui -isystem /usr/local/include 
 

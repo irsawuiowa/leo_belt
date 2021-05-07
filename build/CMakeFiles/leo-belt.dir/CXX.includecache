@@ -26,7 +26,7 @@ imgui_user.h
 
 ../third-party/imgui/imgui_impl_glfw.h
 
-/home/pi/leo_belt/common/example.hpp
+/home/pi/Desktop/newgui/leo_belt/common/example.hpp
 librealsense2/rs.hpp
 -
 GLFW/glfw3.h
@@ -50,17 +50,17 @@ map
 functional
 -
 ../third-party/stb_easy_font.h
-/home/pi/leo_belt/third-party/stb_easy_font.h
+/home/pi/Desktop/newgui/leo_belt/third-party/stb_easy_font.h
 
-/home/pi/leo_belt/leo-belt.cpp
+/home/pi/Desktop/newgui/leo_belt/leo-belt.cpp
 librealsense2/rs.hpp
 -
 common/example.hpp
-/home/pi/leo_belt/common/example.hpp
+/home/pi/Desktop/newgui/leo_belt/common/example.hpp
 imgui.h
 -
 imgui_impl_glfw.h
-/home/pi/leo_belt/imgui_impl_glfw.h
+/home/pi/Desktop/newgui/leo_belt/imgui_impl_glfw.h
 sstream
 -
 iostream
@@ -82,9 +82,9 @@ stdio.h
 unistd.h
 -
 rs232.h
-/home/pi/leo_belt/rs232.h
+/home/pi/Desktop/newgui/leo_belt/rs232.h
 
-/home/pi/leo_belt/rs232.h
+/home/pi/Desktop/newgui/leo_belt/rs232.h
 stdio.h
 -
 string.h
@@ -110,7 +110,7 @@ errno.h
 windows.h
 -
 
-/home/pi/leo_belt/third-party/stb_easy_font.h
+/home/pi/Desktop/newgui/leo_belt/third-party/stb_easy_font.h
 stdlib.h
 -
 math.h
